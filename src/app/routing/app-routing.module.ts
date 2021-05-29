@@ -6,6 +6,7 @@ import { HomeComponent } from '../pages/eager/home/home.component';
 import { LayoutComponent } from '../pages/eager/layout/layout.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: PagePaths.Home, pathMatch: 'full' },
   {
     // DEFAULT
     path: '',

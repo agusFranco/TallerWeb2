@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
+import { ExampleDirective } from './directives/example-directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [ExampleDirective],
   imports: [],
-  exports: [],
+  exports: [ExampleDirective],
   providers: [],
 })
 export class SharedModule {}
