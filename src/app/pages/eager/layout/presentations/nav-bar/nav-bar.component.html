@@ -1,0 +1,16 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row">
+    <h2>Taller Web 2</h2>
+  </div>
+  <div fxLayout="row" fxHide fxShow.gt-sm>
+  </div>
+  <div fxLayout="row" fxHide fxShow.gt-sm>
+    <button mat-raised-button color="primary">Subscribe</button>
+    <button mat-raised-button color="primary">Login</button>
+  </div>
+  <div fxLayout="row" fxShow fxHide.gt-sm>
+    <button mat-icon-button (click)="handleSideNavClick()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

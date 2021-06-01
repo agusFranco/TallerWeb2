@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PagePaths } from '../common/enums/pagepaths';
 import { HomeComponent } from '../pages/eager/home/home.component';
-import { LayoutComponent } from '../pages/eager/layout/layout.component';
+import { LayoutComponent } from '../pages/eager/layout/container/layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: PagePaths.Home, pathMatch: 'full' },

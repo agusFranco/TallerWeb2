@@ -1,0 +1,25 @@
+<mat-drawer-container id="app-layout-content">
+  <!-- SideNav -->
+  <mat-drawer
+    #drawer
+    mode="over"
+    hasBackdrop="true"
+    class="sidenav-menu-container"
+  >
+    <side-bar></side-bar>
+  </mat-drawer>
+  <!-- END SideNav -->
+  <!-- Header -->
+  <header>
+    <nav-bar (onSideNavClick)="drawer.toggle()"></nav-bar>
+  </header>
+  <!-- END Header -->
+  <main id="app-main-content">
+    <loader *ngIf="navigating"></loader>
+    <div [hidden]="navigating">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+  <footer>Footer</footer>
+</mat-drawer-container>
