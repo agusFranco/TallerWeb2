@@ -1,18 +1,17 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-    selector: 'nav-bar',
-    templateUrl: 'nav-bar.component.html'
+  selector: 'nav-bar',
+  templateUrl: 'nav-bar.component.html',
 })
-
 export class NavBarComponent implements OnInit {
-    @Output() onSideNavClick: EventEmitter<any> = new EventEmitter();
+  @Output() onSideNavClick: EventEmitter<any> = new EventEmitter();
 
-    constructor() { }
+  constructor() {}
 
-    ngOnInit() { }
+  ngOnInit() {}
 
-    public handleSideNavClick(): void {
-        this.onSideNavClick.emit();
-      }
+  public handleSideNavClick(): void {
+    this.onSideNavClick.emit();
+  }
 }

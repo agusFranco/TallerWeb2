@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { takeWhile } from 'rxjs/operators';
 import { NavigationService } from 'src/app/core/services/navigation.service';
 
@@ -6,6 +7,8 @@ import { NavigationService } from 'src/app/core/services/navigation.service';
   templateUrl: 'layout.component.html',
 })
 export class LayoutComponent implements OnInit {
+  @ViewChild('drawer') drawer!: MatDrawer;
+
   // Public Component
   public navigating: boolean = false;
 
@@ -13,6 +16,11 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     this.subscribeToNavigationEvents();
+  }
+
+  public toggleSideNav(): void {
+    // Define.
+    this.drawer.toggle();
   }
 
   private subscribeToNavigationEvents(): void {

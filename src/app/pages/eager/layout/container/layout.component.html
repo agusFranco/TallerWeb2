@@ -9,10 +9,11 @@
     <side-bar></side-bar>
   </mat-drawer>
   <!-- END SideNav -->
+  <!-- Main -->
   <section class="app-content-wrapper">
     <!-- Header -->
     <header>
-      <nav-bar (onSideNavClick)="drawer.toggle()"></nav-bar>
+      <nav-bar (onSideNavClick)="toggleSideNav()"></nav-bar>
     </header>
     <!-- END Header -->
     <!-- Main -->
@@ -31,4 +32,5 @@
     </footer>
     <!-- END Footer -->
   </section>
+  <!-- End Main -->
 </mat-drawer-container>
