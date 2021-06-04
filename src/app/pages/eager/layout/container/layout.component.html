@@ -1,4 +1,4 @@
-<mat-drawer-container id="app-layout-content">
+<mat-drawer-container id="app-layout-container">
   <!-- SideNav -->
   <mat-drawer
     #drawer
@@ -9,17 +9,26 @@
     <side-bar></side-bar>
   </mat-drawer>
   <!-- END SideNav -->
-  <!-- Header -->
-  <header>
-    <nav-bar (onSideNavClick)="drawer.toggle()"></nav-bar>
-  </header>
-  <!-- END Header -->
-  <main id="app-main-content">
-    <loader *ngIf="navigating"></loader>
-    <div [hidden]="navigating">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
+  <section class="app-content-wrapper">
+    <!-- Header -->
+    <header>
+      <nav-bar (onSideNavClick)="drawer.toggle()"></nav-bar>
+    </header>
+    <!-- END Header -->
+    <!-- Main -->
+    <main>
+      <loader *ngIf="navigating"></loader>
+      <router-outlet [hidden]="navigating"></router-outlet>
+    </main>
+    <!-- END Main -->
 
-  <footer>Footer</footer>
+    <!-- Footer -->
+    <footer>
+      <mat-card>
+        <mat-card-title>Footer </mat-card-title>
+        <mat-card-subtitle>Footer Links</mat-card-subtitle>
+      </mat-card>
+    </footer>
+    <!-- END Footer -->
+  </section>
 </mat-drawer-container>

@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from 'src/app/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { HomeComponent } from './home/home.component';
 import { LayoutModule } from './layout/layout.module';
 
+const Components = [HomeComponent];
+const InnerModules = [LayoutModule]
+
+
 @NgModule({
-  declarations: [HomeComponent],
-  imports: [SharedModule, RouterModule, LayoutModule],
-  exports: [RouterModule, LayoutModule, HomeComponent],
+  declarations: [Components],
+  imports: [RouterModule, SharedModule, MaterialModule, InnerModules],
+  exports: [RouterModule],
   providers: [],
 })
 export class PagesModule {}
