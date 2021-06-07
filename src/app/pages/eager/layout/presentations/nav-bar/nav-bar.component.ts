@@ -6,6 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
   @Output() onSideNavClick: EventEmitter<any> = new EventEmitter();
+  @Output() onLoginClick: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 
@@ -13,5 +14,9 @@ export class NavBarComponent implements OnInit {
 
   public handleSideNavClick(): void {
     this.onSideNavClick.emit();
+  }
+
+  public handleLoginClick(): void {
+    this.onLoginClick.emit();
   }
 }

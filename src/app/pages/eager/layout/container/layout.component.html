@@ -13,10 +13,14 @@
   <section class="app-content-wrapper">
     <!-- Header -->
     <header>
-      <nav-bar (onSideNavClick)="toggleSideNav()"></nav-bar>
+      <nav-bar
+        (onSideNavClick)="toggleSideNav()"
+        (onLoginClick)="openLoginModal()"
+      ></nav-bar>
     </header>
     <!-- END Header -->
     <!-- Main -->
+    <!-- <auth-dialog></auth-dialog> -->
     <main>
       <loader *ngIf="navigating"></loader>
       <router-outlet [hidden]="navigating"></router-outlet>

@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const Material = [
     CommonModule,
@@ -25,6 +26,7 @@ const Material = [
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatDialogModule
 ];
 
 @NgModule({

@@ -1,0 +1,25 @@
+<form (ngSubmit)="submitForm()" [formGroup]="formularioLogin">
+  <h2>Bienvenido!</h2>
+
+  <div fxLayout="column">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+  </div>
+
+  <div class="mt-3">
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="formularioLogin.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>
