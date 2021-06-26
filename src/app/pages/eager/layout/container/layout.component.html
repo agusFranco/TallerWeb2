@@ -6,7 +6,10 @@
     hasBackdrop="true"
     class="sidenav-menu-container"
   >
-    <side-bar></side-bar>
+    <side-bar
+      (onLoginClick)="openLoginModal()"
+      (onCloseSideBar)="toggleSideNav()"
+    ></side-bar>
   </mat-drawer>
   <!-- END SideNav -->
   <!-- Main -->
@@ -16,6 +19,7 @@
       <nav-bar
         (onSideNavClick)="toggleSideNav()"
         (onLoginClick)="openLoginModal()"
+        (onMenuItemClick)="handleMenuItemClick($event)"
       ></nav-bar>
     </header>
     <!-- END Header -->

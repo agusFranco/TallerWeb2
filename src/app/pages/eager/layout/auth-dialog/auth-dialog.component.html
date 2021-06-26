@@ -1,25 +1,114 @@
-<form (ngSubmit)="submitForm()" [formGroup]="formularioLogin">
-  <h2>Bienvenido!</h2>
-
-  <div fxLayout="column">
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput type="text" formControlName="email" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password" />
-    </mat-form-field>
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center">
+    <h2>Bienvenido a Taller Web 2</h2>
   </div>
 
-  <div class="mt-3">
-    <button
-      type="submit"
-      mat-raised-button
-      color="primary"
-      [disabled]="formularioLogin.invalid"
-    >
-      Submit
-    </button>
-  </div>
-</form>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Login" (click)="setHeightLogin()">
+      <form class="mt-3" (ngSubmit)="submitLogin()" [formGroup]="loginForm">
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email" />
+            <mat-error *ngIf="loginForm.email?.hasError('email')">
+              El Email es invalido.
+            </mat-error>
+            <mat-error *ngIf="loginForm.email?.hasError('required')">
+              El Email es requerido.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+            <mat-error *ngIf="registerForm.password?.hasError('minlength')">
+              El Password debe tener al menos 6 caracteres.
+            </mat-error>
+            <mat-error *ngIf="registerForm.password?.hasError('required')">
+              El Password es requerido.
+            </mat-error>
+          </mat-form-field>
+          <button
+            class="mt-3"
+            type="submit"
+            mat-button
+            mat-raised-button
+            color="primary"
+            [disabled]="loginForm.invalid"
+          >
+            Ingresar
+          </button>
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab label="Registrarse">
+      <form
+        class="mt-3"
+        (ngSubmit)="submitRegister()"
+        [formGroup]="registerForm"
+      >
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" formControlName="firstName" />
+            <mat-error *ngIf="registerForm.firstName?.hasError('minlength')">
+              El nombre debe tener al menos 3 caracteres.
+            </mat-error>
+            <mat-error *ngIf="registerForm.firstName?.hasError('required')">
+              El nombre es requerido.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input matInput type="text" formControlName="lastName" />
+            <mat-error *ngIf="registerForm.lastName?.hasError('minlength')">
+              El Apellido debe tener al menos 3 caracteres.
+            </mat-error>
+            <mat-error *ngIf="registerForm.lastName?.hasError('required')">
+              El Apellido es requerido.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email" />
+            <mat-error *ngIf="registerForm.email?.hasError('email')">
+              El Email es invalido.
+            </mat-error>
+            <mat-error *ngIf="registerForm.email?.hasError('required')">
+              El Email es requerido.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+            <mat-error *ngIf="registerForm.password?.hasError('minlength')">
+              El Password debe tener al menos 6 caracteres.
+            </mat-error>
+            <mat-error *ngIf="registerForm.password?.hasError('required')">
+              El Password es requerido.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Direccion</mat-label>
+            <input matInput type="text" formControlName="address" />
+            <mat-error *ngIf="registerForm.address?.hasError('minlength')">
+              La Direccion debe tener al menos 5 caracteres.
+            </mat-error>
+            <mat-error *ngIf="registerForm.address?.hasError('required')">
+              La Direccion es requerida.
+            </mat-error>
+          </mat-form-field>
+          <button
+            class="mt-4"
+            type="submit"
+            mat-button
+            mat-raised-button
+            color="primary"
+            [disabled]="registerForm.invalid"
+          >
+            Registrarse
+          </button>
+        </div>
+      </form>
+    </mat-tab>
+  </mat-tab-group>
+</div>

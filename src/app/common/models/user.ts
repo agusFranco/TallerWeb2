@@ -2,8 +2,8 @@ import { Address } from './address';
 
 export interface User {
     email:string;
-    password:string;
+    password?:string;
     firstName:string;
     lastName:string;
-    address: Address;
+    address: string;
 }

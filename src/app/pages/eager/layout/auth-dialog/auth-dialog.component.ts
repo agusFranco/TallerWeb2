@@ -1,34 +1,31 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { take } from 'rxjs/operators';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
+
+import { LoginForm } from './forms/login.form';
+import { RegisterForm } from './forms/register.form';
 
 @Component({
   selector: 'auth-dialog',
   templateUrl: 'auth-dialog.component.html',
 })
 export class AuthDialogComponent implements OnInit {
-  public formularioLogin: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.email, Validators.required]),
-    password: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(6),
-    ]),
-  });
+  public loginForm: LoginForm = new LoginForm();
+  public registerForm: RegisterForm = new RegisterForm();
 
-  public get email() {
-    return this.formularioLogin.get('email');
-  }
-
-  public get password() {
-    return this.formularioLogin.get('password');
-  }
+  // State
+  public processing: boolean = false;
 
   constructor(
+    private userService: UserService,
+    private authService: AuthService,
     public dialogRef: MatDialogRef<AuthDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     // this.prueba?.valueChanges
     //   .pipe(
     //     takeWhile(() => true),
@@ -43,12 +40,35 @@ export class AuthDialogComponent implements OnInit {
     //   });
   }
 
-  public submitForm(): void {
-    if (!this.formularioLogin.valid) {
+  public setHeightLogin(): void {}
+
+  public submitLogin(): void {
+    if (!this.loginForm.valid) {
       return;
     }
 
-    console.log('Clickearon submit');
+    this.processing = true;
+
+    let inputModel = this.loginForm.createInputModel();
+
+    this.userService
+      .login(inputModel)
+      .pipe(take(1))
+      .subscribe((outputModel) => {
+        if (outputModel?.hasErrors) {
+          // handle response;
+        }
+
+        this.authService.setUser(outputModel.data);
+        this.processing = false;
+        this.dialogRef.close();
+      });
+  }
+
+  public submitRegister(): void {
+    if (!this.registerForm.valid) {
+      return;
+    }
 
     // Crear un LoginInputModel;
     // Llamo al servicio,

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { User } from 'src/app/common/models/user';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'nav-bar',
@@ -7,8 +9,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class NavBarComponent implements OnInit {
   @Output() onSideNavClick: EventEmitter<any> = new EventEmitter();
   @Output() onLoginClick: EventEmitter<any> = new EventEmitter();
+  @Output() onMenuItemClick: EventEmitter<any> = new EventEmitter();
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
+
+  get user(): User {
+    return this.authService.getUser();
+  }
 
   ngOnInit() {}
 
@@ -18,5 +25,9 @@ export class NavBarComponent implements OnInit {
 
   public handleLoginClick(): void {
     this.onLoginClick.emit();
+  }
+
+  public handleMenuItemClick(route: string): void {
+    this.onMenuItemClick.emit(route);
   }
 }

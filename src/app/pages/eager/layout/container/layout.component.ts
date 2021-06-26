@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDrawer } from '@angular/material/sidenav';
 import { takeWhile } from 'rxjs/operators';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { NavigationService } from 'src/app/core/services/navigation.service';
+
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 
 @Component({
@@ -16,6 +18,7 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private navigationService: NavigationService,
+    private authService: AuthService,
     private dialog: MatDialog
   ) {}
 
@@ -25,7 +28,8 @@ export class LayoutComponent implements OnInit {
 
   public openLoginModal(): void {
     const authDialogRef = this.dialog.open(AuthDialogComponent, {
-      width: '300px',
+      width: '30em',
+      minHeight: '10em',
       data: {},
     });
   }
@@ -33,6 +37,10 @@ export class LayoutComponent implements OnInit {
   public toggleSideNav(): void {
     // Define.
     this.drawer.toggle();
+  }
+
+  public handleMenuItemClick(event: any): void {
+    this.navigationService.navigate(event);
   }
 
   private subscribeToNavigationEvents(): void {

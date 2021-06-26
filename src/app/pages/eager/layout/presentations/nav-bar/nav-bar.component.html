@@ -3,9 +3,19 @@
     <h2>Taller Web 2</h2>
   </div>
   <div fxLayout="row" fxHide fxShow.gt-sm>
+    <button mat-button (click)="handleMenuItemClick('home')">Home</button>
+    <button mat-button (click)="handleMenuItemClick('carrito')">Carrito</button>
   </div>
   <div fxLayout="row" fxHide fxShow.gt-sm>
-    <button mat-raised-button color="primary" (click)="handleLoginClick()">Login</button>
+    <button
+      *ngIf="!user"
+      mat-raised-button
+      color="primary"
+      (click)="handleLoginClick()"
+    >
+      Ingresar
+    </button>
+    <a *ngIf="user" mat-button>Bienvenido {{ user?.firstName }}!</a>
   </div>
   <div fxLayout="row" fxShow fxHide.gt-sm>
     <button mat-icon-button (click)="handleSideNavClick()">
