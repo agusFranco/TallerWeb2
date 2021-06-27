@@ -4,9 +4,10 @@ import { NgModule } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { BaseService } from './services/base.service';
 import { NavigationService } from './services/navigation.service';
+import { ProductService } from './services/products.service';
 import { UserService } from './services/user.service';
 
-const Providers = [NavigationService, AuthService, BaseService, UserService];
+const Providers = [NavigationService, AuthService, BaseService, UserService, ProductService];
 
 @NgModule({
   imports: [HttpClientModule],

@@ -3,6 +3,7 @@ require("dotenv").config();
 
 // Packages
 const express = require("express");
+const cors = require("cors");
 const port = process.env.PORT || 8000;
 
 // Controllers
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 // Middleware
 app.use((req, res, next) => {
@@ -23,7 +25,7 @@ app.use((req, res, next) => {
 
 // Controllers
 app.use("/user", userController);
-app.use("/products", productsController);
+app.use("/product", productsController);
 
 app.listen(port, () => {
   console.log("Server App listening on port " + port);

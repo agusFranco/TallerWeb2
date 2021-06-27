@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Product } from 'src/app/common/models/product';
+import { Observable } from 'rxjs';
+import { APIEndpoints } from 'src/app/common/models/api/apiendpoints';
+import { APIResponse } from 'src/app/common/models/api/apiresponse';
+
+import { BaseService } from './base.service';
 
 @Injectable({ providedIn: 'root' })
-export class ProductService {
-  constructor() {}
+export class ProductService extends BaseService {
+  public get(): Observable<APIResponse<any>> {
+    return this.executeGet<any[]>(APIEndpoints.Products.Get);
+  }
 
-  public getProducts(): Observable<any[]> {
-    return of([
-      { id: 1, name: 'hola2' },
-      { id: 2, desc: 'hola2' },
-    ]);
+  public getById(id: number): Observable<APIResponse<any>> {
+    return this.executeGet<any[]>(`${APIEndpoints.Products.Get}/${id}`);
   }
 }
