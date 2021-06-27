@@ -1,22 +1,30 @@
+// Configuration
+require("dotenv").config();
+
+// Packages
 const express = require("express");
+const port = process.env.PORT || 8000;
+
 // Controllers
 const userController = require("./controllers/user.controller");
 const productsController = require("./controllers/product.controller");
 
+// Initalize
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Middleware
 app.use((req, res, next) => {
   console.log("Middleware");
+  next();
 });
-
-// IDK
-app.use(express.json());
 
 // Controllers
 app.use("/user", userController);
 app.use("/products", productsController);
 
-app.listen(3000, () => {
-  console.log("Server App listening on port 3000!");
+app.listen(port, () => {
+  console.log("Server App listening on port " + port);
 });
