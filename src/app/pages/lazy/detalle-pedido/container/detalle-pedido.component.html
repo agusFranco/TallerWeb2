@@ -1,1 +1,16 @@
-Detalles del pedido
+<mat-card pageContainer>
+    <mat-card-title>Home </mat-card-title>
+  
+    <mat-card-subtitle>Bienvenidos a la Home!.</mat-card-subtitle>
+  
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <mat-card *ngFor="let product of products">
+          <mat-card-title> {{ product.name }} </mat-card-title>
+          <mat-card-subtitle> {{ product.description }}</mat-card-subtitle>
+          <mat-card-content> </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
