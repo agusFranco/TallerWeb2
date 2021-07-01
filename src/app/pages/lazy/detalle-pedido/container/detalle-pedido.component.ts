@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { ProductService } from 'src/app/core/services/products.service';
 
+
 @Component({
     templateUrl: 'detalle-pedido.component.html'
 })

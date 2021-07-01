@@ -16,6 +16,20 @@ const products = [
     price: 10,
     category: { id: 1, description: "Categoria 1" },
   },
+  {
+    id: 3,
+    name: "Producto 3",
+    description: "Descripcion Prod 3",
+    price: 10,
+    category: { id: 1, description: "Categoria 3" },
+  },
+  {
+    id: 4,
+    name: "Producto 4",
+    description: "Descripcion Prod 4",
+    price: 10,
+    category: { id: 1, description: "Categoria 4" },
+  },
 ];
 
 router.get("/", function (req, res) {
