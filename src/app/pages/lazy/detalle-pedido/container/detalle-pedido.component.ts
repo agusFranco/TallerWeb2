@@ -4,7 +4,8 @@ import { ProductService } from 'src/app/core/services/products.service';
 
 
 @Component({
-    templateUrl: 'detalle-pedido.component.html'
+    templateUrl: 'detalle-pedido.component.html',
+    styleUrls: ['./detalle-pedido.component.scss']
 })
 
 export class DetallePedidoComponent implements OnInit {
