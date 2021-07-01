@@ -1,14 +1,16 @@
 <div class="container mt-5 mb-5">
+
   <div class="d-flex justify-content-center row">
+
+    <h1 class="col-md-10 titulo" >Compras</h1>
 
       <div class="col-md-10" *ngFor="let product of products">
           <div class="row p-2 bg-white border rounded mt-2">
               <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg"></div>
               <div class="col-md-6 mt-1">
-                  <h5>Entregado el 23 de junio</h5>
+                  <p class="entregado">Entregado el 23 de junio </p>
                   <br>
-                  <p class="text-justify text-truncate para mb-0">{{ product.name }}<br><br></p>
-                  <p class="text-justify text-truncate para mb-0">{{ product.description }}<br><br></p>
+                  <p class="text-justify text-truncate para mb-0 prodTitulo">{{ product.name }}<br><br></p>
                   <h4 class="mr-1">${{ product.price }} x 1 Unidad</h4>
               </div>
 
