@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Product } from 'src/app/common/models/product';
+import { User } from 'src/app/common/models/user';
 import { CarritoService } from 'src/app/core/services/carrito.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
     templateUrl: 'carrito.component.html'
@@ -10,29 +12,29 @@ import { CarritoService } from 'src/app/core/services/carrito.service';
 
 export class CarritoComponent implements OnInit{
 
-    public orders: any[] = [];
-    public orderById: any;
+    
+    public products: Product[] = [];
     public precioTotalCarrito: number = 0;
-  
-    constructor(private router: Router, private carritoService: CarritoService) {}
+    public user?: User;
+
+    constructor(private router: Router, private carritoService: CarritoService, private userService: UserService) {}
   
     ngOnInit(): void {
-        this.carritoService.getById(1)
-        .pipe(take(1))
-        .subscribe((apiResponse) => {
-          this.orderById = apiResponse.data;
-        });
-        //console.log(this.orderById);
-
-     
+        this.products = this.carritoService.obtenerCarrito();
+        this.user = this.userService.obtenerUsuario(1) //TODO: Id del usuario hardcodeado
     }
 
     public calcularPrecioTotalCarrito(){
         this.precioTotalCarrito = 0;
-        this.orderById.products.forEach((product: Product) => {
+        this.products.forEach((product: Product) => {
             this.precioTotalCarrito += product.price;
         });
 
-        console.log(this.precioTotalCarrito)
+        //console.log(this.precioTotalCarrito)
+    }
+
+    public eliminarProductoDelCarrito(idProducto: number){
+        this.carritoService.eliminarProductoDelCarrito(idProducto);
+        //console.log(idProducto)
     }
 }

@@ -29,4 +29,10 @@ export class UserService extends BaseService {
   public register(inputModel: RegisterInputModel): Observable<any> {
     return of({});
   }
+
+
+  public obtenerUsuario(id: number): User{
+    return { email: "seba@gmail.com", firstName: "Sebastian", lastName: "Tofano", address: "Lomas del Mirador 1111"}
+  }
+
 }
