@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const addressSchema = require("./address");
 
 const userSchema = mongoose.Schema({
+  cognitoId: {
+    type: String,
+    required: true,
+  },
   firstName: {
     type: String,
     required: true,

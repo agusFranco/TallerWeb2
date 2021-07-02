@@ -1,5 +1,8 @@
 const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
 
+/** 
+ * Cognito Identity JS Wrapper
+ */
 class Cognito {
   constructor() {
     this.poolData = {
@@ -9,6 +12,9 @@ class Cognito {
 
     this.userPool = new AmazonCognitoIdentity.CognitoUserPool(this.poolData);
   }
+  /** 
+   * Returns the UserSub if the transaction was success.
+  */
   register = (registerForm) => {
     return new Promise((resolve, reject) => {
       let cognitoParameters = [];
@@ -46,11 +52,14 @@ class Cognito {
             return;
           }
 
-          resolve(result.user);
+          resolve(result.userSub);
         }
       );
     });
   };
+  /** 
+  * Returns the JWT if the transaction was success.
+ */
   authenticate = (userName, password) => {
     return new Promise((resolve, reject) => {
       let authenticationDetails =
@@ -66,7 +75,7 @@ class Cognito {
 
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-          resolve(result.getIdToken());
+          resolve(result.getAccessToken().getJwtToken());
         },
         onFailure: function (err) {
           reject(err.message);

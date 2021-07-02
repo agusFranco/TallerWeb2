@@ -13,7 +13,7 @@ const Cognito = require("../configuration/cognito");
 // Mongo Model
 const User = require("../models/mongo/user");
 
-router.get("/", async function (req, res) {});
+router.get("/", async function (req, res) { });
 
 router.post("/", async function (req, res) {
   const { error } = registerValidator.validate(req.body);
@@ -29,9 +29,10 @@ router.post("/", async function (req, res) {
 
   cognito
     .register(req.body)
-    .then(async (user) => {
+    .then(async (userSub) => {
       try {
-        const mongoUser = new User(req.body);
+        const userModel = { ...req.body, cognitoId: userSub };
+        const mongoUser = new User(userModel);
         const savedUser = await mongoUser.save();
 
         return ResponseHelper.createSuccessResponse(
