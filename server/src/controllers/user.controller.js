@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 // Helpers
-const responseHelper = require("../helpers/responseHelper");
+const ResponseHelper = require("../helpers/responseHelper");
 
 // Validators
 const loginValidator = require("../models/validators/loginValidator");
@@ -19,7 +19,7 @@ router.post("/", async function (req, res) {
   const { error } = registerValidator.validate(req.body);
 
   if (error) {
-    return responseHelper.createBadRequestResponse(
+    return ResponseHelper.createBadRequestResponse(
       res,
       error.details[0].message
     );
@@ -34,17 +34,17 @@ router.post("/", async function (req, res) {
         const mongoUser = new User(req.body);
         const savedUser = await mongoUser.save();
 
-        return responseHelper.createSuccessResponse(
+        return ResponseHelper.createSuccessResponse(
           res,
           savedUser,
           `Usuario creado satisfactoriamente.!`
         );
       } catch (error) {
-        return responseHelper.createBadRequestResponse(res, error);
+        return ResponseHelper.createBadRequestResponse(res, error);
       }
     })
     .catch((errorMessage) => {
-      return responseHelper.createBadRequestResponse(res, errorMessage);
+      return ResponseHelper.createBadRequestResponse(res, errorMessage);
     });
 });
 
@@ -52,7 +52,7 @@ router.post("/Login", async function (req, res) {
   const { error } = loginValidator.validate(req.body);
 
   if (error) {
-    return responseHelper.createBadRequestResponse(
+    return ResponseHelper.createBadRequestResponse(
       res,
       error.details[0].message
     );
@@ -63,14 +63,14 @@ router.post("/Login", async function (req, res) {
   cognito
     .authenticate(req.body.email, req.body.password)
     .then((data) => {
-      return responseHelper.createSuccessResponse(
+      return ResponseHelper.createSuccessResponse(
         res,
         data,
         `Bienvenido ${req.body.email}!`
       );
     })
     .catch((errorMessage) => {
-      return responseHelper.createBadRequestResponse(res, errorMessage);
+      return ResponseHelper.createBadRequestResponse(res, errorMessage);
     });
 });
 
