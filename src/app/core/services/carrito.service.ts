@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APIEndpoints } from 'src/app/common/models/api/apiendpoints';
 import { APIResponse } from 'src/app/common/models/api/apiresponse';
+import { Order } from 'src/app/common/models/order';
 import { Product } from 'src/app/common/models/product';
 import { BaseService } from './base.service';
 
@@ -55,5 +56,9 @@ export class CarritoService extends BaseService{
 
   public obtenerCarrito(){
     return this.productosEnCarrito;
+  }
+
+  public confirmarCompra(newOrder: Order){
+    // Llamar al endpoint necesario
   }
 }

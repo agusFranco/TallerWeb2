@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { Order } from 'src/app/common/models/order';
 import { Product } from 'src/app/common/models/product';
 import { User } from 'src/app/common/models/user';
 import { CarritoService } from 'src/app/core/services/carrito.service';
@@ -16,6 +17,7 @@ export class CarritoComponent implements OnInit{
     public products: Product[] = [];
     public precioTotalCarrito: number = 0;
     public user?: User;
+    public newOrder?: any;
 
     constructor(private router: Router, private carritoService: CarritoService, private userService: UserService) {}
   
@@ -36,5 +38,12 @@ export class CarritoComponent implements OnInit{
     public eliminarProductoDelCarrito(idProducto: number){
         this.carritoService.eliminarProductoDelCarrito(idProducto);
         //console.log(idProducto)
+    }
+
+    public confirmarCompra(){
+        this.newOrder.products = this.products;
+        this.newOrder.user = this.user;
+        // TODO: Agregamos precio total de la orden?????
+        this.carritoService.confirmarCompra(this.newOrder);
     }
 }
