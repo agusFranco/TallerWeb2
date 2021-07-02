@@ -1,61 +1,77 @@
 const router = require("express").Router();
-const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
-const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
 
-// Cognito Stuff
-const cognitoPoolData = {
-  UserPoolId: process.env.COGNITO_GROUP_ID,
-  ClientId: process.env.COGNITO_CLIENT_ID,
-};
+// Helpers
+const responseHelper = require("../helpers/responseHelper");
 
-const userPool = new AmazonCognitoIdentity.CognitoUserPool(cognitoPoolData);
+// Validators
+const loginValidator = require("../models/validators/loginValidator");
+const registerValidator = require("../models/validators/registerValidator");
 
-router.get("/", function (req, res) {
-  res.send("User");
+// Cognito
+const Cognito = require("../configuration/cognito");
+
+// Mongo Model
+const User = require("../models/mongo/user");
+
+router.get("/", async function (req, res) {});
+
+router.post("/", async function (req, res) {
+  const { error } = registerValidator.validate(req.body);
+
+  if (error) {
+    return responseHelper.createBadRequestResponse(
+      res,
+      error.details[0].message
+    );
+  }
+
+  let cognito = new Cognito();
+
+  cognito
+    .register(req.body)
+    .then(async (user) => {
+      try {
+        const mongoUser = new User(req.body);
+        const savedUser = await mongoUser.save();
+
+        return responseHelper.createSuccessResponse(
+          res,
+          savedUser,
+          `Usuario creado satisfactoriamente.!`
+        );
+      } catch (error) {
+        return responseHelper.createBadRequestResponse(res, error);
+      }
+    })
+    .catch((errorMessage) => {
+      return responseHelper.createBadRequestResponse(res, errorMessage);
+    });
 });
 
-router.post("/", function (req, res) {
-  let cognitoParameters = [];
+router.post("/Login", async function (req, res) {
+  const { error } = loginValidator.validate(req.body);
 
-  cognitoParameters.push(
-    new AmazonCognitoIdentity.CognitoUserAttribute({
-      Name: "name",
-      Value: "Agustin",
+  if (error) {
+    return responseHelper.createBadRequestResponse(
+      res,
+      error.details[0].message
+    );
+  }
+
+  let cognito = new Cognito();
+
+  cognito
+    .authenticate(req.body.email, req.body.password)
+    .then((data) => {
+      return responseHelper.createSuccessResponse(
+        res,
+        data,
+        `Bienvenido ${req.body.email}!`
+      );
     })
-  );
-
-  cognitoParameters.push(
-    new AmazonCognitoIdentity.CognitoUserAttribute({
-      Name: "family_name",
-      Value: "Franco",
-    })
-  );
-
-  cognitoParameters.push(
-    new AmazonCognitoIdentity.CognitoUserAttribute({
-      Name: "address",
-      Value: "Direccion",
-    })
-  );
-
-  //attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"custom:scope",Value:"admin"}));
-
-  userPool.signUp(
-    "afranco@test.com",
-    "asd123asd",
-    cognitoParameters,
-    null,
-    function (err, result) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      cognitoUser = result.user;
-      console.log("user name is " + cognitoUser.getUsername());
-    }
-  );
-
-  res.send('OK');
+    .catch((errorMessage) => {
+      return responseHelper.createBadRequestResponse(res, errorMessage);
+    });
 });
 
 module.exports = router;

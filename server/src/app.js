@@ -4,11 +4,17 @@ require("dotenv").config();
 // Packages
 const express = require("express");
 const cors = require("cors");
-const port = process.env.PORT || 8000;
+const mongoose = require('mongoose');
 
 // Controllers
 const userController = require("./controllers/user.controller");
 const productsController = require("./controllers/product.controller");
+
+// Database
+const MongoODBC = require("./configuration/mongo");
+
+// Database Connection
+const mongoODBC = new MongoODBC().connect();
 
 // Initalize
 const app = express();
@@ -19,7 +25,7 @@ app.use(cors());
 
 // Middleware
 app.use((req, res, next) => {
-  console.log("Middleware");
+  // console.log("Middleware");
   next();
 });
 
@@ -27,6 +33,6 @@ app.use((req, res, next) => {
 app.use("/user", userController);
 app.use("/product", productsController);
 
-app.listen(port, () => {
-  console.log("Server App listening on port " + port);
+app.listen(process.env.PORT || 8000, () => {
+  console.log("Server App listening on port " + process.env.PORT || 8000);
 });
