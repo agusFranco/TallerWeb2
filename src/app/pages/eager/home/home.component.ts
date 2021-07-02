@@ -1,14 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { PagePaths } from 'src/app/common/enums/pagepaths';
+import { ProductService } from 'src/app/core/services/products.service';
 
 @Component({
-  templateUrl: 'home.component.html'
+  templateUrl: 'home.component.html',
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
+  public products: any[] = [];
+  public productById: any;
 
-  ngOnInit():void {}
+  constructor(private router: Router, private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.productService
+      .get()
+      .pipe(take(1))
+      .subscribe((apiResponse) => {
+        this.products = apiResponse.data;
+      });
+
+      this.productService
+      .getById(2)
+      .pipe(take(1))
+      .subscribe((apiResponse) => {
+        this.productById = apiResponse.data;
+      });
+  }
 
   public irACarrito(): void {
     this.router.navigate([PagePaths.Carrito]);

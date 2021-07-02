@@ -3,4 +3,7 @@ export const APIEndpoints = {
     Register: 'User',
     Login: 'User/Login',
   },
+  Products: {
+    Get: 'Product',
+  },
 };

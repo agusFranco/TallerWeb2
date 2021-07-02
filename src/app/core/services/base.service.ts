@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 export class BaseService {
   constructor(protected http: HttpClient) {}
 
-
   protected getBaseUrl(): string {
     return environment.apiUrl;
   }

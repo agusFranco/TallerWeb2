@@ -13,6 +13,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatListModule} from '@angular/material/list';
 
 const Material = [
     CommonModule,
@@ -28,7 +29,8 @@ const Material = [
     MatInputModule,
     MatIconModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    MatListModule
 ];
 
 @NgModule({
