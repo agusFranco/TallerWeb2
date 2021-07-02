@@ -32,6 +32,20 @@ export class CarritoService extends BaseService{
       description: "Descripcion Prod 3",
       price: 40,
       category: { id: 2, description: "Categoria 2" },
+    },
+    {
+      id: 4,
+      name: "Producto 4",
+      description: "Descripcion Prod 4",
+      price: 60,
+      category: { id: 3, description: "Categoria 3" },
+    },
+    {
+      id: 5,
+      name: "Producto 5",
+      description: "Descripcion Prod 5",
+      price: 80,
+      category: { id: 1, description: "Categoria 1" },
     }
   ];
 

@@ -1,7 +1,7 @@
 <h1><mat-icon>shopping_cart</mat-icon> Mi Carrito </h1>
 <mat-tab-group mat-align-tabs="start">
   <mat-tab label="Mis productos seleccionados">
-    <table class="table">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">Producto</th>
@@ -31,21 +31,21 @@
         </tr>
       </tbody>
     </table>
-    <div class="example-button-row">
+    <!-- <div class="example-button-row">
       <button mat-raised-button color="primary" class="btn-calcular-precio" (click)="calcularPrecioTotalCarrito()">Calcular Precio Total de la Compra <mat-icon>cached</mat-icon></button>
-    </div>
+    </div> -->
   </mat-tab>
-  <mat-tab label="Mis datos personales para recibir compra">
+  <mat-tab label="Mis datos de facturación">
    
     <div class="page-content page-container" id="page-content">
       <div class="padding">
-          <div class="row container d-flex justify-content-center">
+          <div class="row d-flex justify-content-center">
               <div class="col-xl-12 col-md-12">
                   <div class="card user-card-full">
                       <div class="row m-l-0 m-r-0">
                           <div class="col-sm-4 bg-c-lite-green user-profile">
                               <div class="card-block text-center text-white">
-                                  <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"> </div>
+                                  <div class=""> <img src="https://i.pinimg.com/originals/74/ab/48/74ab48240e34df5e05a398e997a42b0e.png" class="img-radius mt-5 w-25" alt="User-Profile-Image"> </div>
                                   <h6 class="f-w-600">Hembo Tingor</h6>
                                   <p>Web Designer</p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                               </div>
@@ -90,9 +90,8 @@
 
 
 
-
 <div class="example-button-row">
-  <button mat-raised-button color="primary" class="btn-confirmar-compra">Confirmar Compra <mat-icon>done_all</mat-icon></button>
+  <button (click)="confirmarCompra()" mat-raised-button color="primary" class="btn-confirmar-compra">Confirmar Compra <mat-icon>done_all</mat-icon></button>
 </div>
 
 <style>
@@ -118,6 +117,9 @@
   .fila-total-precio{
     font-weight: bold;
     font-size: 16px;
+  }
+  #page-content{
+    overflow-x:hidden;
   }
 
 </style>
