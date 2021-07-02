@@ -13,7 +13,7 @@ const cognitoMiddleware = (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.header("Access-Control-Allow-Credential", "true");
-    res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
+    res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");    
 
     if (req.method !== "OPTIONS") {
         let accessTokenFromClient = req.headers["authorization"];

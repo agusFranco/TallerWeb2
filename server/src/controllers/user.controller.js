@@ -11,7 +11,7 @@ const registerValidator = require("../models/validators/registerValidator");
 const Cognito = require("../configuration/cognito");
 
 // Mongo Model
-const User = require("../models/mongo/user");
+const User = require("../models/mongo/userModel");
 
 router.get("/", async function (req, res) { });
 
