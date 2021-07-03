@@ -1,7 +1,7 @@
 <h1><mat-icon>shopping_cart</mat-icon> Mi Carrito de compras </h1>
 <mat-tab-group mat-align-tabs="start">
   <mat-tab label="Mis productos seleccionados">
-    <table class="table table-striped">
+    <table class="table table-striped align-middle">
       <thead>
         <tr>
           <th scope="col">Producto</th>
@@ -13,8 +13,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products">
-          <td>{{product.name}}</td>
+        <tr *ngFor="let product of products" >
+          <td><img src="https://img.icons8.com/bubbles/2x/product.png" class="img-producto">  {{product.name}}</td>
           <td>{{product.description}}</td>
           <td>{{product.category.description}}</td>
           <td>$ {{product.price}} ARS</td>
@@ -90,10 +90,11 @@
 <button *ngIf="productosEliminadosDelCarrito.length > 0" (click)="agregarUltimoProductoEliminado()" mat-raised-button color="primary" class="btn-restaurar-productos">Restaurar Último Producto Eliminado<mat-icon>cached icon</mat-icon></button>
 
 <button (click)="MockGuardarProductosEnCarritoSession()" mat-raised-button color="" class="">RESTABLECER SESSION CON PRODUCTOS - MOCK PROVISORIO<mat-icon>cached icon</mat-icon></button>
+<button (click)="agregarProductoAlCarritoMock()" mat-raised-button color="" class="m-lg-1">AGREGAR UN PRODUCTO  - MOCK PROVISORIO</button>
 
 
 <div class="example-button-row">
-  <button (click)="confirmarCompra()" mat-raised-button color="primary" class="btn-confirmar-compra">Confirmar Compra <mat-icon>done_all</mat-icon></button>
+  <button (click)="confirmarCompra()" mat-raised-button color="primary" class="btn-confirmar-compra ">Confirmar Compra <mat-icon>done_all</mat-icon></button>
 </div>
 
 <style>
@@ -125,6 +126,9 @@
   }
   .btn-restaurar-productos{
     margin-left: 80%;
+  }
+  .img-producto{
+    width: 60px;
   }
 
 </style>

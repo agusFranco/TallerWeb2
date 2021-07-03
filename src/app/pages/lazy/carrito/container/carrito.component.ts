@@ -65,4 +65,17 @@ export class CarritoComponent implements OnInit{
         this.products = this.carritoService.obtenerCarrito();
         this.calcularPrecioTotalCarrito();
     }
+
+    public agregarProductoAlCarritoMock(){
+        let product:Product = {  id: 6,
+            name: "Producto 6",
+            description: "Descripcion Prod 6",
+            price: 100,
+            category: { id: 1, description: "Categoria 1" }}
+        
+        this.carritoService.agregarProductoAlCarrito(product);
+        this.products = this.carritoService.obtenerCarrito();
+        this.calcularPrecioTotalCarrito();
+    }
+
 }

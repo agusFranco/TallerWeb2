@@ -1,5 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const ResponseHelper = require("../helpers/responseHelper");
+const productModel = require("../models/mongo/productModel");
+
+
 
 const products = [
   {
@@ -34,13 +38,10 @@ const products = [
 
 router.get("/", function (req, res) {
   // Ir a mongo, o a donde sea, y recuperar la data.
-  const apiResponse = {
-    data: products,
-    messages: [],
-    hasErrors: false,
-  }
-
-  res.send(apiResponse);
+  let product = productModel.find()
+    .then(function (productos) {
+      return ResponseHelper.createSuccessResponse(res, productos, "Obtener productos");
+  });
 });
 
 
