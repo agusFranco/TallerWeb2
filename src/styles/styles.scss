@@ -37,6 +37,7 @@ $Taller-accent: mat-palette($mat-pink, A200, A100, A400);
 $Taller-warn: mat-palette($mat-red);
 
 $primary: map-get($Taller-primary, default);
+$warning: map-get($Taller-warn, default);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
@@ -126,4 +127,14 @@ body {
 
 .w-32 {
   width: 32%;
+}
+
+.notification-error {
+  background: $warning;
+  color: white;
+}
+
+.notification-success {
+  background: green;
+  color: white;
 }

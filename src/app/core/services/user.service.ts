@@ -11,28 +11,19 @@ import { BaseService } from './base.service';
 @Injectable()
 export class UserService extends BaseService {
   public login(inputModel: LoginInputModel): Observable<APIResponse<User>> {
-    console.log('Se va a Enviar:' + JSON.stringify(inputModel));
-
-  // return this.executeGet<User>(APIEndpoints.User.Login);
-    return of({
-      data: {
-        address: 'Direccion',
-        email: 'Mock@test.com',
-        firstName: 'Agustin',
-        lastName: 'Franco',
-      },
-      hasErrors: false,
-      messages: [],
-    });
+    return this.executePost<User>(APIEndpoints.User.Login, inputModel);
   }
 
   public register(inputModel: RegisterInputModel): Observable<any> {
     return of({});
   }
 
-
-  public obtenerUsuario(id: number): User{
-    return { email: "seba@gmail.com", firstName: "Sebastian", lastName: "Tofano", address: "Lomas del Mirador 1111"}
+  public obtenerUsuario(id: number): User {
+    return {
+      email: 'seba@gmail.com',
+      firstName: 'Sebastian',
+      lastName: 'Tofano',
+      address: 'Lomas del Mirador 1111',
+    };
   }
-
 }

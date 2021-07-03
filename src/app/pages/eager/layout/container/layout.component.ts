@@ -43,6 +43,10 @@ export class LayoutComponent implements OnInit {
     this.navigationService.navigate(event);
   }
 
+  public handleLogoutClick(): void {
+    this.authService.clearSession();
+  }
+
   private subscribeToNavigationEvents(): void {
     this.navigationService.onNavigationStart
       .pipe(takeWhile(() => true))

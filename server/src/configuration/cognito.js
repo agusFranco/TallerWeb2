@@ -75,7 +75,7 @@ class Cognito {
 
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-          resolve(result.getAccessToken().getJwtToken());
+          resolve(result.getIdToken());
         },
         onFailure: function (err) {
           reject(err.message);

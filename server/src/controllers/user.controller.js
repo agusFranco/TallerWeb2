@@ -11,7 +11,7 @@ const registerValidator = require("../models/validators/registerValidator");
 const Cognito = require("../configuration/cognito");
 
 // Mongo Model
-const User = require("../models/mongo/userModel");
+const UserModel = require("../models/mongo/userModel");
 
 router.get("/", async function (req, res) { });
 
@@ -32,7 +32,7 @@ router.post("/", async function (req, res) {
     .then(async (userSub) => {
       try {
         const userModel = { ...req.body, cognitoId: userSub };
-        const mongoUser = new User(userModel);
+        const mongoUser = new UserModel(userModel);
         const savedUser = await mongoUser.save();
 
         return ResponseHelper.createSuccessResponse(
@@ -63,11 +63,15 @@ router.post("/Login", async function (req, res) {
 
   cognito
     .authenticate(req.body.email, req.body.password)
-    .then((data) => {
+    .then(async (cognitoResult) => {
+
+      let user = await UserModel.findOne({ cognitoId: cognitoResult.payload.sub });
+      let outputModel = { user: user, token: cognitoResult.jwtToken };
+
       return ResponseHelper.createSuccessResponse(
         res,
-        data,
-        `Bienvenido ${req.body.email}!`
+        outputModel,
+        `Bienvenido ${user.firstName} ${user.lastName}!`
       );
     })
     .catch((errorMessage) => {

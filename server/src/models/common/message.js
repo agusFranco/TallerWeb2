@@ -1,6 +1,6 @@
 class Message {
-    constructor(message = null, type) {
-      this.message = message;
+    constructor(text = null, type) {
+      this.text = text;
       this.type = type;
     }
   }
