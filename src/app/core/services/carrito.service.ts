@@ -12,7 +12,7 @@ import { BaseService } from './base.service';
 export class CarritoService {
 
   constructor(){
-    let carrito = sessionStorage.getItem("Carrito");
+    let carrito = localStorage.getItem("Carrito");
     if(carrito != null && carrito.length > 0){
       this.obtenerCarrito();
     }
@@ -57,26 +57,26 @@ export class CarritoService {
   ];
   
   public MockGuardarProductosEnCarritoSession(){
-    sessionStorage.setItem("Carrito", JSON.stringify(this.productosEnCarrito));
+    localStorage.setItem("Carrito", JSON.stringify(this.productosEnCarrito));
   }
 
   public agregarProductoAlCarrito(product: Product){
     let carrito = this.obtenerCarrito();
     carrito.push(product);
-    sessionStorage.setItem("Carrito", JSON.stringify(carrito));
+    localStorage.setItem("Carrito", JSON.stringify(carrito));
   }
 
   public eliminarProductoDelCarrito(idProducto: number){
     let carrito = this.obtenerCarrito();
     var index = carrito.findIndex((p) =>  p.id === idProducto);
     if (index !== -1) carrito.splice(index, 1);
-    sessionStorage.setItem("Carrito", JSON.stringify(carrito));
+    localStorage.setItem("Carrito", JSON.stringify(carrito));
   }
 
   public obtenerCarrito(): Product[]{
-    let carritoEnSession = JSON.parse(sessionStorage.getItem("Carrito") || "[]") as Product[];
-    if(carritoEnSession != null && carritoEnSession.length > 0){
-      return carritoEnSession as Product[];
+    let carrito = JSON.parse(localStorage.getItem("Carrito") || "[]") as Product[];
+    if(carrito != null && carrito.length > 0){
+      return carrito as Product[];
     }
     return [];
   }
