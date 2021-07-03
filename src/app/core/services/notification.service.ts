@@ -7,7 +7,7 @@ export class NotificationService {
 
   public showError(text: string): void {
     this.snackBar.open(text, undefined, {
-      duration: 4000,
+      duration: 1500,
       verticalPosition: 'top',
       horizontalPosition: 'center',
       panelClass: 'notification-error',
@@ -16,7 +16,7 @@ export class NotificationService {
 
   public showSuccess(text: string): void {
     this.snackBar.open(text, undefined, {
-      duration: 4000,
+      duration: 1500,
       verticalPosition: 'top',
       horizontalPosition: 'center',
       panelClass: 'notification-success',

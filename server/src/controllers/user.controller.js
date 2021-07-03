@@ -38,7 +38,7 @@ router.post("/", async function (req, res) {
         return ResponseHelper.createSuccessResponse(
           res,
           savedUser,
-          `Usuario creado satisfactoriamente.!`
+          `Email de confirmacion enviado satisfactoriamente.!`
         );
       } catch (error) {
         return ResponseHelper.createBadRequestResponse(res, error);

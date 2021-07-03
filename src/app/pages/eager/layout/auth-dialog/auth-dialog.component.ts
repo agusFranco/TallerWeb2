@@ -60,6 +60,25 @@ export class AuthDialogComponent implements OnInit {
     if (!this.registerForm.valid) {
       return;
     }
+
+    this.processing = true;
+
+    let inputModel = this.registerForm.createInputModel();
+
+    this.userService
+      .register(inputModel)
+      .pipe(take(1))
+      .subscribe((outputModel: any) => {
+        this.processing = false;
+
+        if (outputModel.hasError) {
+          this.notificationService.showError(outputModel.message.text);
+          return;
+        }
+
+        this.notificationService.showSuccess(outputModel.message.text);
+        this.dialogRef.close();
+      });
   }
 
   public closeModal(): void {

@@ -15,7 +15,7 @@ export class UserService extends BaseService {
   }
 
   public register(inputModel: RegisterInputModel): Observable<any> {
-    return of({});
+    return this.executePost<User>(APIEndpoints.User.Register, inputModel);
   }
 
   public obtenerUsuario(id: number): User {
