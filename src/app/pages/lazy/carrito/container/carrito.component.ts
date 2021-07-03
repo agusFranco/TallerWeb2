@@ -16,8 +16,9 @@ export class CarritoComponent implements OnInit{
     
     public products: Product[] = [] as Product[];
     public precioTotalCarrito: number = 0;
-    public user: User = {} as User;
-    public newOrder: Order = {} as Order;
+    public user!: User;
+    public newOrder!: Order;
+    public productosEliminadosDelCarrito: Product[] = [];
 
     constructor(private router: Router, private carritoService: CarritoService, private userService: UserService) {}
   
@@ -36,9 +37,10 @@ export class CarritoComponent implements OnInit{
         //console.log(this.precioTotalCarrito)
     }
 
-    public eliminarProductoDelCarrito(idProducto: number){
-        this.carritoService.eliminarProductoDelCarrito(idProducto);
-        //console.log(idProducto)
+    public eliminarProductoDelCarrito(producto: Product){
+        this.carritoService.eliminarProductoDelCarrito(producto.id);
+        this.productosEliminadosDelCarrito.push(producto);
+        this.products = this.carritoService.obtenerCarrito();
         this.calcularPrecioTotalCarrito();
     }
 
@@ -48,5 +50,19 @@ export class CarritoComponent implements OnInit{
         // TODO: Agregamos precio total de la orden?????
         this.carritoService.confirmarCompra(this.newOrder);
         console.log("Compra confirmada, entro")
+    }
+
+    public agregarUltimoProductoEliminado(){
+        if(this.productosEliminadosDelCarrito.length != 0){
+            let productoRestablecer = this.productosEliminadosDelCarrito.pop() as Product;
+            this.products.push(productoRestablecer);
+            this.calcularPrecioTotalCarrito();
+        }
+    }
+
+    public MockGuardarProductosEnCarritoSession(){
+        this.carritoService.MockGuardarProductosEnCarritoSession();
+        this.products = this.carritoService.obtenerCarrito();
+        this.calcularPrecioTotalCarrito();
     }
 }

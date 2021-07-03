@@ -9,7 +9,14 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CarritoService extends BaseService{
+export class CarritoService {
+
+  constructor(){
+    let carrito = sessionStorage.getItem("Carrito");
+    if(carrito != null && carrito.length > 0){
+      this.obtenerCarrito();
+    }
+  }
 
   private productosEnCarrito: Product[] = [
     {
@@ -48,31 +55,33 @@ export class CarritoService extends BaseService{
       category: { id: 1, description: "Categoria 1" },
     }
   ];
-
-  public get(): Observable<APIResponse<any>> {
-    return this.executeGet<any[]>(APIEndpoints.Carrito.Get);
+  
+  public MockGuardarProductosEnCarritoSession(){
+    sessionStorage.setItem("Carrito", JSON.stringify(this.productosEnCarrito));
   }
 
-  public getById(id: number): Observable<APIResponse<any>> {
-    return this.executeGet<any[]>(`${APIEndpoints.Carrito.Get}/${id}`);
-  }
-
-  public agregarProductoACarrito(product: Product){
-    this.productosEnCarrito.push(product);
+  public agregarProductoAlCarrito(product: Product){
+    let carrito = this.obtenerCarrito();
+    sessionStorage.setItem("Carrito", JSON.stringify(carrito));
   }
 
   public eliminarProductoDelCarrito(idProducto: number){
-    var index = this.productosEnCarrito.findIndex(function(p){
-      return p.id === idProducto;
-    })
-    if (index !== -1) this.productosEnCarrito.splice(index, 1);
+    let carrito = this.obtenerCarrito();
+    var index = carrito.findIndex((p) =>  p.id === idProducto);
+    if (index !== -1) carrito.splice(index, 1);
+    sessionStorage.setItem("Carrito", JSON.stringify(carrito));
   }
 
-  public obtenerCarrito(){
-    return this.productosEnCarrito;
+  public obtenerCarrito(): Product[]{
+    let carritoEnSession = JSON.parse(sessionStorage.getItem("Carrito") || "[]") as Product[];
+    if(carritoEnSession != null && carritoEnSession.length > 0){
+      return carritoEnSession as Product[];
+    }
+    return [];
   }
 
   public confirmarCompra(newOrder: Order){
     // Llamar al endpoint necesario
   }
+
 }
