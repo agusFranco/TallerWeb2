@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule, OnInit } from '@angular/core';
+import { Router, RouterModule, Routes } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { CarritoService } from 'src/app/core/services/carrito.service';
 import { MaterialModule } from 'src/app/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 

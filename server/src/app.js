@@ -11,6 +11,7 @@ const userController = require("./controllers/user.controller");
 const productsController = require("./controllers/product.controller");
 const authorizedController = require("./controllers/authorized.controller");
 const orderController = require("./controllers/order.controller");
+const carritoController = require("./controllers/carrito.controller");
 
 // Middleware
 const cognitoMiddleware = require("./configuration/cognito-middleware");
@@ -18,6 +19,7 @@ const cognitoMiddleware = require("./configuration/cognito-middleware");
 // Database
 const MongoODBC = require("./configuration/mongo");
 const mongoODBC = new MongoODBC().connect();
+
 
 // Initalize
 const app = express();

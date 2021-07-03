@@ -6,4 +6,7 @@ export const APIEndpoints = {
   Products: {
     Get: 'Product',
   },
+  Carrito: {
+    Get: 'Order',
+  },
 };
