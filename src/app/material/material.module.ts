@@ -13,6 +13,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -32,7 +34,9 @@ const Material = [
   MatDialogModule,
   MatTabsModule,
   MatSnackBarModule,
-  MatDividerModule,
+  MatDividerModule, 
+    MatListModule,
+    MatGridListModule
 ];
 
 @NgModule({

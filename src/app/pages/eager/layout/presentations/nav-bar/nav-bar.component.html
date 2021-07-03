@@ -4,6 +4,7 @@
   </div>
   <div fxLayout="row" fxHide fxShow.gt-sm>
     <button mat-button (click)="handleMenuItemClick('home')">Home</button>
+    <button mat-button (click)="handleMenuItemClick('productos')">Productos</button>
     <button mat-button *ngIf="user" (click)="handleMenuItemClick('carrito')">
       Carrito
     </button>
