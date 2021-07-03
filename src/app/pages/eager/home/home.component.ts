@@ -6,7 +6,7 @@ import { ProductService } from 'src/app/core/services/products.service';
 
 @Component({
   templateUrl: 'home.component.html',
-  styleUrls: ['home.component.scss']
+  styleUrls: ['home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   public products: any[] = [];
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
         this.products = apiResponse.data;
       });
 
-      this.productService
+    this.productService
       .getById(2)
       .pipe(take(1))
       .subscribe((apiResponse) => {
@@ -32,5 +32,9 @@ export class HomeComponent implements OnInit {
 
   public irACarrito(): void {
     this.router.navigate([PagePaths.Carrito]);
+  }
+
+  public handleProductClick(): void {
+    this.router.navigate([PagePaths.Products]);
   }
 }
