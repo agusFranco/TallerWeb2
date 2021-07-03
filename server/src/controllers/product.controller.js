@@ -40,6 +40,9 @@ router.get("/", async function (req, res) {
   // .then(function (productos) {
   //   return ResponseHelper.createSuccessResponse(res, productos, "Obtener productos");
   // });
+
+  let product = await ProductModel.findOne({ id: 1 });
+  // return ResponseHelper.createSuccessResponse(res, product, "Obtener productos");
   return ResponseHelper.createSuccessResponse(res, products, "Obtener productos");
 });
 
