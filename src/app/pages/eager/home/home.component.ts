@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/core/services/products.service';
 
 @Component({
   templateUrl: 'home.component.html',
+  styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit {
   public products: any[] = [];
