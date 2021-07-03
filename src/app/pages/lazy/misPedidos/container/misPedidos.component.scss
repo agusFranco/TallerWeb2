@@ -32,9 +32,10 @@ h5 {
 
 .entregado{
     color: #938787;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 450;
     margin-top: 15px;
+    margin-bottom: 5%;
 }
 
 .prodTitulo{
@@ -45,3 +46,53 @@ h5 {
 .para {
     font-size: 16px
 }
+
+.button-detail {
+    margin-bottom: 2%;
+}
+
+.bold-text {
+    font-weight: 700;
+}
+.contenedor-botones{
+    display: inline-flex;
+align-items: flex-end;
+flex-direction: row;
+
+}
+
+.container-img {
+    display: inline-flex; 
+    align-items: center;
+}
+.button-detail {
+    align-self: auto;
+    width: 35%;
+}
+
+.contenedor-buton {
+    display: inline-flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.button-margin {
+    margin-right: 4%;
+}
+
+@media (max-width: 768px) {
+    .button-detail {
+        
+        width: 100%;
+    }
+    
+.contenedor-buton {
+    display: block;
+    
+}}
+
+.btn-custom {
+    background-color: #1D48FF;
+    color: white;
+}
+

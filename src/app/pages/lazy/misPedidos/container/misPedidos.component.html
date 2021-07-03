@@ -2,28 +2,29 @@
 
     <div class="d-flex justify-content-center row">
   
-      <h1 class="col-md-10 titulo" >Compras</h1>
+      <h1 class="col-md-10 titulo" >Mis compras</h1>
   
         <div class="col-md-10" *ngFor="let product of products">
             <div class="row p-2 bg-white border rounded mt-2">
-                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg"></div>
-                <div class="col-md-6 mt-1">
+                <div class="col-md-3 mt-1 container-img"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg"></div>
+                <div class="col-md-4 contenedor-desc">
                     <p class="entregado">Entregado el 23 de junio </p>
-                    <br>
-                    <p class="text-justify text-truncate para mb-0 prodTitulo">{{ product.name }}<br><br></p>
-                    <h4 class="mr-1">${{ product.price }} x 1 Unidad</h4>
+                   
+                    <p class="text-justify text-truncate para  prodTitulo">{{ product.name }}</p>
+                    <h4 class="mr-1">${{ product.price }} x unidad</h4>
+                    <h3 class="mr-1 "> <b>Unidades: </b>1</h3>
+                    <h4 class="mr-1"> <b>Total: </b>$10</h4>
+                    
                 </div>
   
-                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                  <div class="d-flex flex-row align-items-center">
+                <div class=" col-md-5 contenedor-botones ">
+                  <!-- <div class="d-flex flex-row align-items-center">
                         <h4 class="mr-1">${{ product.price }}</h4>
-                    </div>
+                    </div> -->
   
-                    <div class="d-flex flex-column mt-4">
-                      <button class="btn btn-primary btn-sm" type="button">Detalle</button>
-                      <a [routerLink] = "['Carrito']">LINK</a>
-                      <br>
-                      <button class="btn btn-primary btn-sm" type="button">Comprar de nuevo</button>
+                    <div class="contenedor-buton mb-2">
+                      <button class="btn btn-primary btn-sm button-detail button-margin" type="button">Ver Detalle</button>
+                      <button class="btn btn-custom btn-sm button-detail" type="button">Comprar de nuevo</button>
                     </div>
                 </div>
   
