@@ -7,6 +7,7 @@ import { UserService } from 'src/app/core/services/user.service';
 
 import { LoginForm } from './forms/login.form';
 import { RegisterForm } from './forms/register.form';
+import { VerificationForm } from './forms/verification.form';
 
 @Component({
   selector: 'auth-dialog',
@@ -15,9 +16,11 @@ import { RegisterForm } from './forms/register.form';
 export class AuthDialogComponent implements OnInit {
   public loginForm: LoginForm = new LoginForm();
   public registerForm: RegisterForm = new RegisterForm();
+  public verificationForm: VerificationForm = new VerificationForm();
 
   // State
   public processing: boolean = false;
+  public registerFormSuccess: boolean = false;
 
   constructor(
     private notificationService: NotificationService,
@@ -28,6 +31,14 @@ export class AuthDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  public handleUserHasCode(): void {
+    this.registerFormSuccess = true;
+  }
+
+  public handleUserDontHasCode(): void {
+    this.registerFormSuccess = false;
+  }
 
   public submitLogin(): void {
     if (!this.loginForm.valid) {
@@ -67,6 +78,32 @@ export class AuthDialogComponent implements OnInit {
 
     this.userService
       .register(inputModel)
+      .pipe(take(1))
+      .subscribe((outputModel: any) => {
+        this.processing = false;
+
+        if (outputModel.hasError) {
+          this.notificationService.showError(outputModel.message.text);
+          return;
+        }
+
+        this.registerFormSuccess = true;
+        this.notificationService.showSuccess(outputModel.message.text);
+        this.dialogRef.close();
+      });
+  }
+
+  public submitVerification(): void {
+    if (!this.verificationForm.valid) {
+      return;
+    }
+
+    this.processing = true;
+
+    let inputModel = this.verificationForm.createInputModel();
+
+    this.userService
+      .verify(inputModel)
       .pipe(take(1))
       .subscribe((outputModel: any) => {
         this.processing = false;
