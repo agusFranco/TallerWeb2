@@ -26,9 +26,9 @@
     <!-- END Header -->
     <!-- Main -->
     <!-- <auth-dialog></auth-dialog> -->
-    <main>
+    <main class="app-main-wrapper">
       <loader *ngIf="navigating"></loader>
-      <router-outlet [hidden]="navigating"></router-outlet>
+      <router-outlet [hidden]="navigating" class="app-main-wrapper"></router-outlet>
     </main>
     <!-- END Main -->
 

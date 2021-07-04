@@ -78,8 +78,11 @@ body {
 
 .app-content-wrapper {
   min-height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  height: 100%;
+}
+
+.app-main-wrapper {
+  min-height: 75%;  
 }
 
 .brand-logo {
