@@ -8,7 +8,7 @@ const orderSchema = mongoose.Schema({
     products: [productSchema],
     date: {
         type: Date,
-        required: true,
+        // required: true,
     }
 });
 

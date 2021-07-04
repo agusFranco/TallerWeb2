@@ -33,8 +33,6 @@ export class CarritoComponent implements OnInit{
         this.products.forEach((product: Product) => {
             this.precioTotalCarrito += product.price;
         });
-
-        //console.log(this.precioTotalCarrito)
     }
 
     public eliminarProductoDelCarrito(producto: Product){

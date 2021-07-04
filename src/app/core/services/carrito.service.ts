@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APIEndpoints } from 'src/app/common/models/api/apiendpoints';
@@ -11,7 +12,7 @@ import { BaseService } from './base.service';
 })
 export class CarritoService {
 
-  constructor(){
+  constructor(protected http: HttpClient){
     let carrito = localStorage.getItem("Carrito");
     if(carrito != null && carrito.length > 0){
       this.obtenerCarrito();
@@ -82,7 +83,7 @@ export class CarritoService {
   }
 
   public confirmarCompra(newOrder: Order){
-    // Llamar al endpoint necesario
+    this.http.post("/confirmarOrder", this.productosEnCarrito[0]);
   }
 
 }

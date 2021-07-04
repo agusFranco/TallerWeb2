@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
+const ResponseHelper = require("../helpers/responseHelper");
+const orderValidator = require("../models/validators/orderValidator");
+const UserModel = require("../models/mongo/userModel");
+const OrderModel = require("../models/mongo/orderModel");
+
 const orders = [
   {
     id: 1,
@@ -75,5 +80,25 @@ router.get("/:id", function (req, res) {
 
   res.send(apiResponse);
 });
+
+router.post("/confirmarOrder", async function (req, res) {
+  //const { error } = orderValidator.validate(req.body);
+
+
+  
+  let user = await UserModel.findOne({ cognitoId: "e0ae9967-0ac4-47ad-85c9-833fd1506a5d" });
+
+  if (!user) {
+      return ResponseHelper.createBadRequestResponse(res, "Usuario no encontrado.");
+  }
+
+  const orderToSave = { user: user, products: orders[0].products, date: null };
+
+    const mongoOrder = new OrderModel(orderToSave);
+    const savedOrder = await mongoOrder.save();
+
+    return ResponseHelper.createSuccessResponse(res, savedOrder);
+});
+
 
 module.exports = router;
