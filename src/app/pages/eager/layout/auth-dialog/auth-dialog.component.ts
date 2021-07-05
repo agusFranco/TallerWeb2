@@ -1,5 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatTabGroup } from '@angular/material/tabs';
 import { take } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
@@ -14,6 +15,8 @@ import { VerificationForm } from './forms/verification.form';
   templateUrl: 'auth-dialog.component.html',
 })
 export class AuthDialogComponent implements OnInit {
+  @ViewChild('tabGroup') tabGroup!: MatTabGroup;
+
   public loginForm: LoginForm = new LoginForm();
   public registerForm: RegisterForm = new RegisterForm();
   public verificationForm: VerificationForm = new VerificationForm();
@@ -88,8 +91,8 @@ export class AuthDialogComponent implements OnInit {
         }
 
         this.registerFormSuccess = true;
+        this.verificationForm.email?.setValue(inputModel.email);
         this.notificationService.showSuccess(outputModel.message.text);
-        this.dialogRef.close();
       });
   }
 
@@ -114,7 +117,8 @@ export class AuthDialogComponent implements OnInit {
         }
 
         this.notificationService.showSuccess(outputModel.message.text);
-        this.dialogRef.close();
+        this.loginForm.email?.setValue(inputModel.email);
+        this.tabGroup.selectedIndex = 0;
       });
   }
 

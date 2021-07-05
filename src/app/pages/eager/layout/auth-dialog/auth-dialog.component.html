@@ -3,7 +3,7 @@
     <h2>Bienvenido a Taller Web 2</h2>
   </div>
 
-  <mat-tab-group mat-align-tabs="center">
+  <mat-tab-group mat-align-tabs="center" #tabGroup>
     <mat-tab label="Login">
       <form class="mt-3" (ngSubmit)="submitLogin()" [formGroup]="loginForm">
         <div fxLayout="column">
