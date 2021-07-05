@@ -6,6 +6,7 @@ const ResponseHelper = require("../helpers/responseHelper");
 // Validators
 const loginValidator = require("../models/validators/loginValidator");
 const registerValidator = require("../models/validators/registerValidator");
+const verifyValidator = require("../models/validators/verifyValidator");
 
 // Cognito
 const Cognito = require("../configuration/cognito");
@@ -73,6 +74,28 @@ router.post("/Login", async function (req, res) {
         outputModel,
         `Bienvenido ${user.firstName} ${user.lastName}!`
       );
+    })
+    .catch((errorMessage) => {
+      return ResponseHelper.createBadRequestResponse(res, errorMessage);
+    });
+});
+
+router.post("/Verify", async function (req, res) {
+  const { error } = verifyValidator.validate(req.body);
+
+  if (error) {
+    return ResponseHelper.createBadRequestResponse(
+      res,
+      error.details[0].message
+    );
+  }
+
+  let cognito = new Cognito();
+
+  cognito
+    .verify(req.body.email, req.body.code)
+    .then(async (cognitoResult) => {
+      return ResponseHelper.createSuccessResponse(res, null, "Usuario confirmado existosamente.");
     })
     .catch((errorMessage) => {
       return ResponseHelper.createBadRequestResponse(res, errorMessage);

@@ -83,6 +83,23 @@ class Cognito {
       });
     });
   };
+  verify = (userName, code) => {
+    return new Promise((resolve, reject) => {
+      let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: userName,
+        Pool: this.userPool,
+      });
+
+      cognitoUser.confirmRegistration(code, true, function (err, result) {
+        if (err) {
+          reject(err.message);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  };
 }
 
 module.exports = Cognito;

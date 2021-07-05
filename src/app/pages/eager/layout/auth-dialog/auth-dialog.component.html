@@ -41,7 +41,8 @@
       </form>
     </mat-tab>
     <mat-tab label="Registrarse">
-      <form *ngIf="!registerFormSuccess"
+      <form
+        *ngIf="!registerFormSuccess"
         class="mt-3 register-form"
         (ngSubmit)="submitRegister()"
         [formGroup]="registerForm"
@@ -161,28 +162,42 @@
               Registrarse
             </button>
             <button
-            class="mt-3 p-1"        
-            mat-button
-            mat-raised-button           
-            [disabled]="processing"
-            (click)="handleUserHasCode()"
-          >
-            Tengo un codigo de verificacion
-          </button>
-
+              class="mt-3 p-1"
+              mat-button
+              mat-raised-button
+              [disabled]="processing"
+              (click)="handleUserHasCode()"
+            >
+              Tengo un codigo de verificacion
+            </button>
           </div>
         </div>
       </form>
 
-      <form *ngIf="registerFormSuccess" class="mt-3" (ngSubmit)="submitVerification()" [formGroup]="verificationForm">
+      <form
+        *ngIf="registerFormSuccess"
+        class="mt-3"
+        (ngSubmit)="submitVerification()"
+        [formGroup]="verificationForm"
+      >
         <div fxLayout="column">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email" />
+            <mat-error *ngIf="verificationForm.email?.hasError('email')">
+              El Email es invalido.
+            </mat-error>
+            <mat-error *ngIf="verificationForm.email?.hasError('required')">
+              El Email es requerido.
+            </mat-error>
+          </mat-form-field>
           <mat-form-field>
             <mat-label>Codigo</mat-label>
             <input matInput type="text" formControlName="code" />
             <mat-error *ngIf="verificationForm.code?.hasError('required')">
               El Codigo es requerido.
             </mat-error>
-          </mat-form-field>        
+          </mat-form-field>
           <button
             class="mt-3"
             type="submit"
@@ -194,14 +209,14 @@
             Verificar
           </button>
           <button
-          class="mt-3 p-1"        
-          mat-button
-          mat-raised-button           
-          [disabled]="processing"
-          (click)="handleUserDontHasCode()"
-        >
-          No tengo un codigo de verificacion
-        </button>
+            class="mt-3 p-1"
+            mat-button
+            mat-raised-button
+            [disabled]="processing"
+            (click)="handleUserDontHasCode()"
+          >
+            No tengo un codigo de verificacion
+          </button>
         </div>
       </form>
     </mat-tab>

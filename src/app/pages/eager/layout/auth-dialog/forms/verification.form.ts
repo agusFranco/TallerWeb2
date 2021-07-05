@@ -4,6 +4,7 @@ import { VerificationInputModel } from 'src/app/common/models/api/input/verifica
 export class VerificationForm extends FormGroup {
   constructor() {
     super({
+      email: new FormControl(null, [Validators.email, Validators.required]),
       code: new FormControl(null, [Validators.required]),
     });
   }
@@ -12,9 +13,14 @@ export class VerificationForm extends FormGroup {
     return this.get('code');
   }
 
+  public get email() {
+    return this.get('email');
+  }
+
   public createInputModel(): VerificationInputModel {
     let inputModel = new VerificationInputModel();
     inputModel.code = this.code?.value;
+    inputModel.email = this.email?.value;
     return inputModel;
   }
 }
