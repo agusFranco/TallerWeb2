@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { ProductService } from 'src/app/core/services/products.service';
+import { OrderService } from 'src/app/core/services/order.service';
+import { Router } from '@angular/router';
+import { PagePaths } from 'src/app/common/enums/pagepaths';
 
 @Component({
     templateUrl: 'misPedidos.component.html',
@@ -9,16 +11,21 @@ import { ProductService } from 'src/app/core/services/products.service';
 
 export class misPedidosComponent implements OnInit {
 
-    public products: any[] = [];
+    public orders: any = [];
 
-    constructor(private productServices: ProductService) { }
+    constructor(private router: Router, private orderServices: OrderService) { }
 
     ngOnInit(): void {
-        this.productServices
+        this.orderServices
           .get()
           .pipe(take(1))
           .subscribe((apiResponse) => {
-            this.products = apiResponse.data;
+            this.orders = apiResponse.data;
+            console.log(this.orders);
           });
+      }
+
+      public handleDetallePedidoClick(): void {
+        this.router.navigate([PagePaths.DetallePedido]);
       }
 }

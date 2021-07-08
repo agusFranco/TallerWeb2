@@ -3,6 +3,9 @@ const router = express.Router();
 
 const ResponseHelper = require("../helpers/responseHelper");
 
+const productModel = require("../models/mongo/productModel");
+
+/*
 const products = [
   {
     id: 1,
@@ -47,17 +50,19 @@ const products = [
     category: { id: 1, description: "Categoria 3" },
   },
 ];
+*/
 
 router.get("/", async function (req, res) {
   // Ir a mongo, o a donde sea, y recuperar la data.
-  // let product = productModel.find()
-  // .then(function (productos) {
-  //   return ResponseHelper.createSuccessResponse(res, productos, "Obtener productos");
-  // });
+   let product = productModel.find()
+   .then(function (productos) {
+    return ResponseHelper.createSuccessResponse(res, productos, "Obtener productos");
+   });
 
   // let product = await ProductModel.findOne({ id: 1 });
   // return ResponseHelper.createSuccessResponse(res, product, "Obtener productos");
-  return ResponseHelper.createSuccessResponse(res, products, "Obtener productos");
+  
+  //return ResponseHelper.createSuccessResponse(res, products, "Obtener productos");
 });
 
 

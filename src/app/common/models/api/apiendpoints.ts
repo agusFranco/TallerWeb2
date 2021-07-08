@@ -10,4 +10,7 @@ export const APIEndpoints = {
   Carrito: {
     Get: 'Order',
   },
+  Orders: {
+    Get: 'Order',
+  },
 };

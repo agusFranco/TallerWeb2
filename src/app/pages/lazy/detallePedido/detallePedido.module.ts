@@ -4,19 +4,19 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { misPedidosComponent } from './container/misPedidos.component';
+import { detallePedidoComponent } from './container/detallePedido.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: misPedidosComponent,
+    component: detallePedidoComponent,
   },
 ];
 
 @NgModule({
   imports: [SharedModule, MaterialModule, HttpClientModule, RouterModule.forChild(routes)],
-  exports: [misPedidosComponent],
-  declarations: [misPedidosComponent],
+  exports: [detallePedidoComponent],
+  declarations: [detallePedidoComponent],
   providers: [],
 })
-export class misPedidosModule {}
+export class detallePedidoModule {}

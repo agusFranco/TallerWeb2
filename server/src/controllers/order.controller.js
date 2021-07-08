@@ -8,7 +8,12 @@ const OrderModel = require("../models/mongo/orderModel");
 const router = express.Router();
 
 router.get("/"/*,cognitoMiddleware*/, async function (req, res) {
-    return ResponseHelper.createSuccessResponse(res, []);
+
+    let ordenes = OrderModel.find()
+    .then(function(ordenes){
+        
+    return ResponseHelper.createSuccessResponse(res, ordenes, "Obtener ordenes");
+    })
 });
 
 router.post("/", async function (req, res) {
