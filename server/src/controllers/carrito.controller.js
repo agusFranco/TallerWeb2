@@ -81,10 +81,8 @@ router.get("/:id", function (req, res) {
   res.send(apiResponse);
 });
 
-router.post("/confirmarOrder", async function (req, res) {
+router.post("/confirmarCompra", async function (req, res) {
   //const { error } = orderValidator.validate(req.body);
-
-
   
   let user = await UserModel.findOne({ cognitoId: "e0ae9967-0ac4-47ad-85c9-833fd1506a5d" });
 
@@ -92,7 +90,7 @@ router.post("/confirmarOrder", async function (req, res) {
       return ResponseHelper.createBadRequestResponse(res, "Usuario no encontrado.");
   }
 
-  const orderToSave = { user: user, products: orders[0].products, date: null };
+  const orderToSave = { user: req.body.user, products: req.body.products, date: null };
 
     const mongoOrder = new OrderModel(orderToSave);
     const savedOrder = await mongoOrder.save();

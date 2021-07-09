@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { APIEndpoints } from 'src/app/common/models/api/apiendpoints';
-import { APIResponse } from 'src/app/common/models/api/apiresponse';
 import { Order } from 'src/app/common/models/order';
 import { Product } from 'src/app/common/models/product';
-import { BaseService } from './base.service';
+import { environment } from 'src/environments/environment';
+import { UserService } from './user.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
 
-  constructor(protected http: HttpClient){
+  constructor(private http: HttpClient, private userService: UserService){
     let carrito = localStorage.getItem("Carrito");
     if(carrito != null && carrito.length > 0){
       this.obtenerCarrito();
@@ -82,8 +82,14 @@ export class CarritoService {
     return [];
   }
 
-  public confirmarCompra(newOrder: Order){
-    this.http.post("/confirmarOrder", this.productosEnCarrito[0]);
+  public confirmarCompra(){
+    var newOrder: Order = {} as Order;
+    newOrder.user = this.userService.obtenerUsuario(1); //TODO: Usuario Hardcodeado
+    newOrder.products = this.productosEnCarrito;
+    console.log("BIEN LLEGO AL SERVICIO");
+    console.log(newOrder);
+    this.http.post(`${environment.apiUrl}carrito/confirmarCompra`, newOrder);
+    console.log(`${environment.apiUrl}carrito/confirmarCompra`)
   }
 
 }

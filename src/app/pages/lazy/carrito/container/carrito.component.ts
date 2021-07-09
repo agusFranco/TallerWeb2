@@ -43,10 +43,7 @@ export class CarritoComponent implements OnInit{
     }
 
     public confirmarCompra(){
-        this.newOrder.products = this.products;
-        this.newOrder.user = this.user;
-        // TODO: Agregamos precio total de la orden?????
-        this.carritoService.confirmarCompra(this.newOrder);
+        this.carritoService.confirmarCompra();
         console.log("Compra confirmada, entro")
     }
 

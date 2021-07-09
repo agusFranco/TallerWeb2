@@ -8,5 +8,6 @@ export const APIEndpoints = {
   },
   Carrito: {
     Get: 'Order',
+    ConfirmarCompra: 'confirmarCompra'
   },
 };
