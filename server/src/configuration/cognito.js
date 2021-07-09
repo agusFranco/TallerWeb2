@@ -75,11 +75,28 @@ class Cognito {
 
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-          resolve(result.getAccessToken().getJwtToken());
+          resolve(result.getIdToken());
         },
         onFailure: function (err) {
           reject(err.message);
         },
+      });
+    });
+  };
+  verify = (userName, code) => {
+    return new Promise((resolve, reject) => {
+      let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: userName,
+        Pool: this.userPool,
+      });
+
+      cognitoUser.confirmRegistration(code, true, function (err, result) {
+        if (err) {
+          reject(err.message);
+          return;
+        }
+
+        resolve(result);
       });
     });
   };

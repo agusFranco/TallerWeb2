@@ -28,7 +28,7 @@ export class LayoutComponent implements OnInit {
 
   public openLoginModal(): void {
     const authDialogRef = this.dialog.open(AuthDialogComponent, {
-      width: '30em',
+      width: '32em',
       minHeight: '10em',
       data: {},
     });
@@ -41,6 +41,10 @@ export class LayoutComponent implements OnInit {
 
   public handleMenuItemClick(event: any): void {
     this.navigationService.navigate(event);
+  }
+
+  public handleLogoutClick(): void {
+    this.authService.clearSession();
   }
 
   private subscribeToNavigationEvents(): void {

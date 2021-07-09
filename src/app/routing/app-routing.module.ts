@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PagePaths } from '../common/enums/pagepaths';
 import { HomeComponent } from '../pages/eager/home/home.component';
+import { ProductsComponent } from '../pages/eager/products/products.component';
 import { LayoutComponent } from '../pages/eager/layout/container/layout.component';
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: PagePaths.Home,
         component: HomeComponent,
+      },
+      {
+        path: PagePaths.Products,
+        component: ProductsComponent,
       },
       // LAZY
       {

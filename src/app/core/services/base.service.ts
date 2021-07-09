@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, map, take } from 'rxjs/operators';
 import { APIResponse } from 'src/app/common/models/api/apiresponse';
 import { environment } from 'src/environments/environment';
 
@@ -16,10 +17,17 @@ export class BaseService {
     endpointPath: string,
     options: Object = {}
   ): Observable<APIResponse<T>> {
-    return this.http.get<APIResponse<T>>(
-      `${this.getBaseUrl()}${endpointPath}`,
-      options
-    );
+    return this.http
+      .get<APIResponse<T>>(`${this.getBaseUrl()}${endpointPath}`, options)
+      .pipe(
+        take(1),
+        map((apiresponse) => {
+          return apiresponse;
+        }),
+        catchError((errorResponse) => {
+          return of(errorResponse.error);
+        })
+      );
   }
 
   protected executePost<T>(
@@ -28,11 +36,21 @@ export class BaseService {
     options: Object = {}
   ): Observable<APIResponse<T>> {
     const input = JSON.stringify(inputModel);
-    return this.http.post<APIResponse<T>>(
-      `${this.getBaseUrl()}${endpointPath}`,
-      input,
-      options
-    );
+    return this.http
+      .post<APIResponse<T>>(
+        `${this.getBaseUrl()}${endpointPath}`,
+        input,
+        options
+      )
+      .pipe(
+        take(1),
+        map((apiresponse) => {
+          return apiresponse;
+        }),
+        catchError((errorResponse) => {
+          return of(errorResponse.error);
+        })
+      );
   }
 
   protected executePut<T>(
@@ -41,20 +59,37 @@ export class BaseService {
     options: Object = {}
   ): Observable<APIResponse<T>> {
     const input = JSON.stringify(inputModel);
-    return this.http.put<APIResponse<T>>(
-      `${this.getBaseUrl()}${endpointPath}`,
-      input,
-      options
-    );
+    return this.http
+      .put<APIResponse<T>>(
+        `${this.getBaseUrl()}${endpointPath}`,
+        input,
+        options
+      )
+      .pipe(
+        take(1),
+        map((apiresponse) => {
+          return apiresponse;
+        }),
+        catchError((errorResponse) => {
+          return of(errorResponse.error);
+        })
+      );
   }
 
   protected executeDelete<T>(
     endpointPath: string,
     options: Object = {}
   ): Observable<APIResponse<T>> {
-    return this.http.delete<APIResponse<T>>(
-      `${this.getBaseUrl()}${endpointPath}`,
-      options
-    );
+    return this.http
+      .delete<APIResponse<T>>(`${this.getBaseUrl()}${endpointPath}`, options)
+      .pipe(
+        take(1),
+        map((apiresponse) => {
+          return apiresponse;
+        }),
+        catchError((errorResponse) => {
+          return of(errorResponse.error);
+        })
+      );
   }
 }

@@ -1,46 +1,47 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatTabGroup } from '@angular/material/tabs';
 import { take } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { UserService } from 'src/app/core/services/user.service';
 
 import { LoginForm } from './forms/login.form';
 import { RegisterForm } from './forms/register.form';
+import { VerificationForm } from './forms/verification.form';
 
 @Component({
   selector: 'auth-dialog',
   templateUrl: 'auth-dialog.component.html',
 })
 export class AuthDialogComponent implements OnInit {
+  @ViewChild('tabGroup') tabGroup!: MatTabGroup;
+
   public loginForm: LoginForm = new LoginForm();
   public registerForm: RegisterForm = new RegisterForm();
+  public verificationForm: VerificationForm = new VerificationForm();
 
   // State
   public processing: boolean = false;
+  public registerFormSuccess: boolean = false;
 
   constructor(
+    private notificationService: NotificationService,
     private userService: UserService,
     private authService: AuthService,
     public dialogRef: MatDialogRef<AuthDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit(): void {
-    // this.prueba?.valueChanges
-    //   .pipe(
-    //     takeWhile(() => true),
-    //     debounce(() => interval(3000))
-    //   )
-    //   .subscribe((value) => {
-    //     if (this.prueba?.valid) {
-    //       console.log(
-    //         `ESTOY LLAMANDO A UNA API PARA VER QUE SEA VALIDO: ${value}`
-    //       );
-    //     }
-    //   });
+  ngOnInit(): void {}
+
+  public handleUserHasCode(): void {
+    this.registerFormSuccess = true;
   }
 
-  public setHeightLogin(): void {}
+  public handleUserDontHasCode(): void {
+    this.registerFormSuccess = false;
+  }
 
   public submitLogin(): void {
     if (!this.loginForm.valid) {
@@ -54,13 +55,17 @@ export class AuthDialogComponent implements OnInit {
     this.userService
       .login(inputModel)
       .pipe(take(1))
-      .subscribe((outputModel) => {
-        if (outputModel?.hasErrors) {
-          // handle response;
+      .subscribe((outputModel: any) => {
+        this.processing = false;
+
+        if (outputModel.hasError) {
+          this.notificationService.showError(outputModel.message.text);
+          return;
         }
 
-        this.authService.setUser(outputModel.data);
-        this.processing = false;
+        this.notificationService.showSuccess(outputModel.message.text);
+        this.authService.setUser(outputModel.data.user);
+        this.authService.setToken(outputModel.data.token);
         this.dialogRef.close();
       });
   }
@@ -70,10 +75,51 @@ export class AuthDialogComponent implements OnInit {
       return;
     }
 
-    // Crear un LoginInputModel;
-    // Llamo al servicio,
-    // Disparo un evento,
-    // Cualquier Cosa;
+    this.processing = true;
+
+    let inputModel = this.registerForm.createInputModel();
+
+    this.userService
+      .register(inputModel)
+      .pipe(take(1))
+      .subscribe((outputModel: any) => {
+        this.processing = false;
+
+        if (outputModel.hasError) {
+          this.notificationService.showError(outputModel.message.text);
+          return;
+        }
+
+        this.registerFormSuccess = true;
+        this.verificationForm.email?.setValue(inputModel.email);
+        this.notificationService.showSuccess(outputModel.message.text);
+      });
+  }
+
+  public submitVerification(): void {
+    if (!this.verificationForm.valid) {
+      return;
+    }
+
+    this.processing = true;
+
+    let inputModel = this.verificationForm.createInputModel();
+
+    this.userService
+      .verify(inputModel)
+      .pipe(take(1))
+      .subscribe((outputModel: any) => {
+        this.processing = false;
+
+        if (outputModel.hasError) {
+          this.notificationService.showError(outputModel.message.text);
+          return;
+        }
+
+        this.notificationService.showSuccess(outputModel.message.text);
+        this.loginForm.email?.setValue(inputModel.email);
+        this.tabGroup.selectedIndex = 0;
+      });
   }
 
   public closeModal(): void {

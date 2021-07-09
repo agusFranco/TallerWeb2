@@ -20,23 +20,21 @@
         (onSideNavClick)="toggleSideNav()"
         (onLoginClick)="openLoginModal()"
         (onMenuItemClick)="handleMenuItemClick($event)"
+        (onLogoutClick)="handleLogoutClick()"
       ></nav-bar>
     </header>
     <!-- END Header -->
     <!-- Main -->
     <!-- <auth-dialog></auth-dialog> -->
-    <main>
+    <main class="app-main-wrapper">
       <loader *ngIf="navigating"></loader>
-      <router-outlet [hidden]="navigating"></router-outlet>
+      <router-outlet [hidden]="navigating" class="app-main-wrapper"></router-outlet>
     </main>
     <!-- END Main -->
 
     <!-- Footer -->
     <footer>
-      <mat-card>
-        <mat-card-title>Footer </mat-card-title>
-        <mat-card-subtitle>Footer Links</mat-card-subtitle>
-      </mat-card>
+      <footer-bar></footer-bar>
     </footer>
     <!-- END Footer -->
   </section>

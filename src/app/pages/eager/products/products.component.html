@@ -1,0 +1,32 @@
+<page-header text="Productos" icon="shopping_cart"></page-header>
+<div fxLayout="row" fxLayout.sm="column">
+  <div fxLayout="column" fxFlex="5">
+  </div>
+  <div fxLayout="column" fxFlex="10">
+    <h2>Categorías</h2>
+    <mat-list role="list">
+      <mat-list-item role="listitem">Categoría 1</mat-list-item>
+      <mat-list-item role="listitem">Categoría 2</mat-list-item>
+      <mat-list-item role="listitem">Categoría 3</mat-list-item>
+    </mat-list>
+  </div>
+  <div fxLayout.sm="column" fxFlex>
+    <mat-card pageContainer>
+      <mat-card-content>
+        <div fxLayout="row">
+          <mat-card *ngFor="let product of products">
+            <img mat-card-image src="https://img.joomcdn.net/78de575f5bb9003b3292486fe89e9aac7eb9dd81_original.jpeg" alt="T-Shirt">
+            <mat-card-title> {{ product.name }} </mat-card-title>
+            <mat-card-subtitle> {{ product.description }}</mat-card-subtitle>
+            <mat-card-subtitle> {{ product.price }}</mat-card-subtitle>
+            <mat-card-content> </mat-card-content>
+            <div fxLayoutAlign="center">
+              <button mat-flat-button color="primary">Agregar al Carrito</button>
+            </div>            
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
