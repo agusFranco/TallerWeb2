@@ -23,7 +23,7 @@
     >
       Ingresar
     </button>
-    <a *ngIf="user" mat-button>Bienvenido {{ user?.firstName }}!</a>
+    <a *ngIf="user" mat-button><mat-icon>account_circle</mat-icon> Bienvenido {{ user?.firstName }} !</a>
     <a *ngIf="user" mat-button (click)="handleLogoutClick()">Salir</a>
   </div>
   <div fxLayout="row" fxShow fxHide.gt-sm>

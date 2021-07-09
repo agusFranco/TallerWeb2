@@ -64,17 +64,6 @@ export class CarritoComponent implements OnInit {
 
         this.notificationService.showSuccess(outputModel.message.text);
       });
-
-    // var newOrder: Order = {} as Order;
-    // newOrder.user = this.userService.obtenerUsuario(1); //TODO: Usuario Hardcodeado
-    // newOrder.products = this.productosEnCarrito;
-    // console.log('BIEN LLEGO AL SERVICIO');
-    // console.log(newOrder);
-    // this.http.post(`${environment.apiUrl}carrito/confirmarCompra`, newOrder);
-    // console.log(`${environment.apiUrl}carrito/confirmarCompra`);
-
-    // this.carritoService.confirmarCompra();
-    // console.log('Compra confirmada, entro');
   }
 
   public agregarUltimoProductoEliminado() {
@@ -92,7 +81,7 @@ export class CarritoComponent implements OnInit {
     this.calcularPrecioTotalCarrito();
   }
 
-  public agregarProductoAlCarritoMock() {
+  public agregarProductoAlCarritoMock():void {
     let product: Product = {
       id: 6,
       name: 'Producto 6',
@@ -103,6 +92,12 @@ export class CarritoComponent implements OnInit {
 
     this.carritoService.agregarProductoAlCarrito(product);
     this.products = this.carritoService.obtenerCarrito();
+    this.calcularPrecioTotalCarrito();
+  }
+
+  public vaciarCarrito():void{
+    this.carritoService.vaciarCarrito();
+    this.products.length = 0;
     this.calcularPrecioTotalCarrito();
   }
 }
