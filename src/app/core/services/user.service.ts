@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { APIEndpoints } from 'src/app/common/models/api/apiendpoints';
 import { APIResponse } from 'src/app/common/models/api/apiresponse';
 import { LoginInputModel } from 'src/app/common/models/api/input/login-inputmodel';
@@ -21,14 +21,5 @@ export class UserService extends BaseService {
 
   public verify(inputModel: VerificationInputModel): Observable<any> {
     return this.executePost<User>(APIEndpoints.User.Verify, inputModel);
-  }
-
-  public obtenerUsuario(id: number): User {
-    return {
-      email: 'seba@gmail.com',
-      firstName: 'Sebastian',
-      lastName: 'Tofano',
-      address: 'Lomas del Mirador 1111',
-    };
   }
 }

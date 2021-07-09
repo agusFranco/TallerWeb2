@@ -1,4 +1,5 @@
 const express = require("express");
+const uuid = require('uuid');
 const cognitoMiddleware = require("../configuration/cognito-middleware");
 const ResponseHelper = require("../helpers/responseHelper");
 const orderValidator = require("../models/validators/orderValidator");
@@ -7,8 +8,20 @@ const OrderModel = require("../models/mongo/orderModel");
 
 const router = express.Router();
 
-router.get("/"/*,cognitoMiddleware*/, async function (req, res) {
-    return ResponseHelper.createSuccessResponse(res, []);
+router.get("/", async function (req, res) {
+    let orders = [];
+
+    if (req.query.userId) {
+        orders = await OrderModel.find({ "user.cognitoId": req.query.userId });
+    } else {
+        // otra busqueda;
+    }
+
+    if (!orders || orders.length == 0) {
+        return ResponseHelper.createNotFoundResponse(res, 'No se encontraron ordenes.');
+    }
+
+    return ResponseHelper.createSuccessResponse(res, orders);
 });
 
 router.post("/", async function (req, res) {
@@ -21,13 +34,13 @@ router.post("/", async function (req, res) {
         );
     }
 
-    let user = await UserModel.findOne({ cognitoId: req.body.userId });
+    let user = await UserModel.findOne({ cognitoId: req.body.cognitoId });
 
     if (!user) {
         return ResponseHelper.createBadRequestResponse(res, "Usuario no encontrado.");
     }
 
-    const orderToSave = { user: user, products: req.body.products, date: req.body.date };
+    const orderToSave = { orderId: uuid.v4(), user: user, products: req.body.products, date: req.body.date };
 
     const mongoOrder = new OrderModel(orderToSave);
     const savedOrder = await mongoOrder.save();

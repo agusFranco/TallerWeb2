@@ -83,13 +83,13 @@ export class CarritoService {
   }
 
   public confirmarCompra(){
-    var newOrder: Order = {} as Order;
-    newOrder.user = this.userService.obtenerUsuario(1); //TODO: Usuario Hardcodeado
-    newOrder.products = this.productosEnCarrito;
-    console.log("BIEN LLEGO AL SERVICIO");
-    console.log(newOrder);
-    this.http.post(`${environment.apiUrl}carrito/confirmarCompra`, newOrder);
-    console.log(`${environment.apiUrl}carrito/confirmarCompra`)
+    // var newOrder: Order = {} as Order;
+    // newOrder.user = this.userService.obtenerUsuario(1); //TODO: Usuario Hardcodeado
+    // newOrder.products = this.productosEnCarrito;
+    // console.log("BIEN LLEGO AL SERVICIO");
+    // console.log(newOrder);
+    // this.http.post(`${environment.apiUrl}carrito/confirmarCompra`, newOrder);
+    // console.log(`${environment.apiUrl}carrito/confirmarCompra`)
   }
 
 }

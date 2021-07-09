@@ -7,8 +7,8 @@ export const APIEndpoints = {
   Products: {
     Get: 'Product',
   },
-  Carrito: {
+  Order: {
     Get: 'Order',
-    ConfirmarCompra: 'confirmarCompra'
+    Create: 'Order'
   },
 };
