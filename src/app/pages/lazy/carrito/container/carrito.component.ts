@@ -63,9 +63,11 @@ export class CarritoComponent implements OnInit {
           this.notificationService.showError(outputModel.message.text);
           return;
         }
-
         this.notificationService.showSuccess(outputModel.message.text);
       });
+      this.notificationService.showSuccess("Compra realizada exitosamente");
+      this.vaciarCarrito();
+
   }
 
   public agregarUltimoProductoEliminado():void {
