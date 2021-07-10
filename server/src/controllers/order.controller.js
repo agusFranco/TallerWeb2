@@ -9,13 +9,8 @@ const OrderModel = require("../models/mongo/orderModel");
 const router = express.Router();
 
 router.get("/", async function (req, res) {
-    let orders = [];
 
-    if (req.query.userId) {
-        orders = await OrderModel.find({ "user.cognitoId": req.query.userId });
-    } else {
-        // otra busqueda;
-    }
+    let orders = await OrderModel.find();
 
     if (!orders || orders.length == 0) {
         return ResponseHelper.createNotFoundResponse(res, 'No se encontraron ordenes.');
@@ -23,6 +18,22 @@ router.get("/", async function (req, res) {
 
     return ResponseHelper.createSuccessResponse(res, orders);
 });
+
+
+router.get("/userId/:id", async function (req, res) {
+    let orders = [];
+
+    orders = await OrderModel.find({ "user.cognitoId": req.params.id});
+
+    console.log(req.params.id);
+    if (!orders || orders.length == 0) {
+        return ResponseHelper.createNotFoundResponse(res, 'No se encontraron ordenes del usuario.');
+    }
+
+    return ResponseHelper.createSuccessResponse(res, orders);
+});
+
+
 
 router.post("/", async function (req, res) {
     const { error } = orderValidator.validate(req.body);
