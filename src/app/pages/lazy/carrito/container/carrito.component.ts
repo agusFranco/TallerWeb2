@@ -11,13 +11,15 @@ import { OrderService } from 'src/app/core/services/order.service';
 
 @Component({
   templateUrl: 'carrito.component.html',
+  styleUrls: ['./carrito.component.scss'],
 })
 export class CarritoComponent implements OnInit {
+
   public products: Product[] = [] as Product[];
   public precioTotalCarrito: number = 0;
   public user!: User | null;
   public newOrder!: Order;
-  public productosEliminadosDelCarrito: Product[] = [];
+  public productosEliminadosDelCarrito: Product[] = [] as Product[];
 
   constructor(
     private router: Router,
@@ -33,21 +35,21 @@ export class CarritoComponent implements OnInit {
     this.calcularPrecioTotalCarrito();
   }
 
-  public calcularPrecioTotalCarrito() {
+  public calcularPrecioTotalCarrito():void {
     this.precioTotalCarrito = 0;
     this.products.forEach((product: Product) => {
       this.precioTotalCarrito += product.price;
     });
   }
 
-  public eliminarProductoDelCarrito(producto: Product) {
+  public eliminarProductoDelCarrito(producto: Product):void {
     this.carritoService.eliminarProductoDelCarrito(producto.id);
     this.productosEliminadosDelCarrito.push(producto);
     this.products = this.carritoService.obtenerCarrito();
     this.calcularPrecioTotalCarrito();
   }
 
-  public confirmarCompra() {
+  public confirmarCompra():void {
     let inputModel: any = {};
     inputModel.cognitoId = this.authService.getUser()?.cognitoId;
     inputModel.products = this.products;
@@ -66,7 +68,7 @@ export class CarritoComponent implements OnInit {
       });
   }
 
-  public agregarUltimoProductoEliminado() {
+  public agregarUltimoProductoEliminado():void {
     if (this.productosEliminadosDelCarrito.length != 0) {
       let productoRestablecer =
         this.productosEliminadosDelCarrito.pop() as Product;
@@ -75,7 +77,7 @@ export class CarritoComponent implements OnInit {
     }
   }
 
-  public MockGuardarProductosEnCarritoSession() {
+  public MockGuardarProductosEnCarritoSession():void {
     this.carritoService.MockGuardarProductosEnCarritoSession();
     this.products = this.carritoService.obtenerCarrito();
     this.calcularPrecioTotalCarrito();

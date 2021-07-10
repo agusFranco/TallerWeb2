@@ -20,7 +20,7 @@ router.get("/", async function (req, res) {
 });
 
 
-router.get("/userId/:id", async function (req, res) {
+router.get("/ByUserId/:id", async function (req, res) {
     let orders = [];
 
     orders = await OrderModel.find({ "user.cognitoId": req.params.id});

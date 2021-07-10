@@ -1,0 +1,40 @@
+.card-producto{
+    width: 250px;  
+  }
+  .btn-confirmar-compra{
+    width: 50%;
+    background-color: green;
+  }
+  .btn-vaciar-carrito{
+    width: 10%;
+    background-color: red;
+    margin-left: 85%;
+  }
+  .btn-calcular-precio{
+    margin-left: 1000px;
+  }
+  .info-title{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  .info-user{
+    font-size: 14px;
+  }
+  .fila-total-precio{
+    font-weight: bold;
+    font-size: 16px;
+  }
+  #page-content{
+    overflow-x:hidden;
+  }
+  .btn-restaurar-productos{
+    margin-left: 80%;
+  }
+  .img-producto{
+    width: 60px;
+  }
+  .icon-cart{
+    font-size: 40px;
+    margin: 10px 10px 0px 0px;
+  }

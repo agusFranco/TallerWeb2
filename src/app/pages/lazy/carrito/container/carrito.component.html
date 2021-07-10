@@ -99,50 +99,5 @@
 <button (click)="agregarProductoAlCarritoMock()" mat-raised-button color="" class="m-lg-1">AGREGAR UN PRODUCTO  - MOCK PROVISORIO</button>
 
 
-<button  (click)="vaciarCarrito()"mat-raised-button color="primary" class="btn-vaciar-carrito">Vaciar Carrito<mat-icon>remove_shopping_cart</mat-icon></button>
-<button (click)="confirmarCompra()" mat-raised-button color="primary" class="btn-confirmar-compra">Comprar<mat-icon>done_all</mat-icon></button>
-
-
-<style>
-  .card-producto{
-    width: 250px;  
-  }
-  .btn-confirmar-compra{
-    width: 50%;
-    background-color: green;
-  }
-  .btn-vaciar-carrito{
-    width: 10%;
-    background-color: red;
-    margin-left: 85%;
-  }
-  .btn-calcular-precio{
-    margin-left: 1000px;
-  }
-  .info-title{
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 15px;
-  }
-  .info-user{
-    font-size: 14px;
-  }
-  .fila-total-precio{
-    font-weight: bold;
-    font-size: 16px;
-  }
-  #page-content{
-    overflow-x:hidden;
-  }
-  .btn-restaurar-productos{
-    margin-left: 80%;
-  }
-  .img-producto{
-    width: 60px;
-  }
-  .icon-cart{
-    font-size: 40px;
-    margin: 10px 10px 0px 0px;
-  }
-
-</style>
+<button *ngIf="products.length > 0" (click)="vaciarCarrito()" mat-raised-button color="primary" class="btn-vaciar-carrito">Vaciar Carrito<mat-icon>remove_shopping_cart</mat-icon></button>
+<button *ngIf="products.length > 0" (click)="confirmarCompra()" mat-raised-button color="primary" class="btn-confirmar-compra">Comprar<mat-icon>done_all</mat-icon></button>
