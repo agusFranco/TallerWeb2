@@ -75,6 +75,7 @@ export class CarritoComponent implements OnInit {
       let productoRestablecer =
         this.productosEliminadosDelCarrito.pop() as Product;
       this.products.push(productoRestablecer);
+      this.carritoService.agregarProductoAlCarrito(productoRestablecer);
       this.calcularPrecioTotalCarrito();
     }
   }
