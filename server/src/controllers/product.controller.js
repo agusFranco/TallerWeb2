@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+const ProductModel = require("../models/mongo/productModel");
 const ResponseHelper = require("../helpers/responseHelper");
 
 const products = [
@@ -49,27 +50,25 @@ const products = [
 ];
 
 router.get("/", async function (req, res) {
-  // Ir a mongo, o a donde sea, y recuperar la data.
-  // let product = productModel.find()
-  // .then(function (productos) {
-  //   return ResponseHelper.createSuccessResponse(res, productos, "Obtener productos");
-  // });
 
-  // let product = await ProductModel.findOne({ id: 1 });
-  // return ResponseHelper.createSuccessResponse(res, product, "Obtener productos");
-  return ResponseHelper.createSuccessResponse(res, products, "Obtener productos");
+  let products = await ProductModel.find();
+
+  if (!products || products.length == 0) {
+      return ResponseHelper.createNotFoundResponse(res, 'No se encontraron productos.');
+  }
+
+  return ResponseHelper.createSuccessResponse(res, products, "Se han encontrado productos");
 });
 
 
-router.get("/:id", function (req, res) {
-  // Ir a mongo, o a donde sea, y recuperar la data.
-  const apiResponse = {
-    data: products.find(x => x.id == req.params.id),
-    messages: [],
-    hasErrors: false,
-  }
+router.get("/:id", async function (req, res) {
+  
+  let product = await ProductModel.find({"id" : req.params.id});
 
-  res.send(apiResponse);
+  if (!product || product.length == 0) {
+    return ResponseHelper.createNotFoundResponse(res, 'No se ha encontrado el producto');
+  }
+  return ResponseHelper.createSuccessResponse(res, product, "Se ha encontrado el producto");
 });
 
 module.exports = router;
