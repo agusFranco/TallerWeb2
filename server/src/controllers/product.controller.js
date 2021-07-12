@@ -54,7 +54,6 @@ const products = [
 */
 
 router.get("/", async function (req, res) {
-<<<<<<< HEAD
 
   let products = await ProductModel.find();
 
@@ -63,18 +62,6 @@ router.get("/", async function (req, res) {
   }
 
   return ResponseHelper.createSuccessResponse(res, products, "Se han encontrado productos");
-=======
-  // Ir a mongo, o a donde sea, y recuperar la data.
-   let product = productModel.find()
-   .then(function (productos) {
-    return ResponseHelper.createSuccessResponse(res, productos, "Obtener productos");
-   });
-
-  // let product = await ProductModel.findOne({ id: 1 });
-  // return ResponseHelper.createSuccessResponse(res, product, "Obtener productos");
-  
-  //return ResponseHelper.createSuccessResponse(res, products, "Obtener productos");
->>>>>>> misPedidos
 });
 
 
