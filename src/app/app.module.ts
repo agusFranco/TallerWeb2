@@ -8,6 +8,8 @@ import { PagesModule } from './pages/eager/pages.module';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,6 +19,9 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     SharedModule,
     PagesModule,
+    BrowserModule, 
+    
+   
   ],
   providers: [],
   bootstrap: [AppComponent],

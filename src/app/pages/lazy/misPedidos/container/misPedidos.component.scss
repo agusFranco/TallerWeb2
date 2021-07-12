@@ -3,7 +3,7 @@ body {
 }
 
 .product-image {
-    width: 100%
+    max-width: 100px;
 }
 
 .dot {
@@ -31,11 +31,10 @@ h5 {
 }
 
 .entregado{
-    color: #938787;
-    font-size: 20px;
-    font-weight: 450;
-    margin-top: 15px;
-    margin-bottom: 5%;
+    
+    font-size: 18px;
+    font-weight: 700;
+    
 }
 
 .prodTitulo{
@@ -94,5 +93,37 @@ flex-direction: row;
 .btn-custom {
     background-color: #1D48FF;
     color: white;
+}
+
+.verDetalle:hover, .verDetalle:focus, .verDetalle:active {
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .verDetalle {
+        display: flex;
+        justify-content: start !important;
+        align-items: center;
+    }
+    .contentHeading {
+        flex-flow: column;
+    }
+    .contenedor-img-product {
+        justify-content: start !important;
+    }
+    // .text-product {
+    //     text-align: center !important;
+    // }
+    .btn-contenedor {
+        justify-content: start !important;
+    }
+     .title-product{
+        margin-top: 10px !important;
+    }
+
+}
+
+.spacingLeft {
+    margin-left: 10% !important;
 }
 
