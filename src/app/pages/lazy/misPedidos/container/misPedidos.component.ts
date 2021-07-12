@@ -3,8 +3,6 @@ import { take } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { OrderService } from 'src/app/core/services/order.service';
 
-
-
 @Component({
    selector: 'app-root',
     templateUrl: 'misPedidos.component.html',
@@ -12,7 +10,7 @@ import { OrderService } from 'src/app/core/services/order.service';
     
 })
 export class misPedidosComponent implements OnInit {
-  public products: any[] = [];
+  public orders: any[] = [];
 
   constructor(
     protected orderService: OrderService,
@@ -24,7 +22,15 @@ export class misPedidosComponent implements OnInit {
       .getByUserId(this.authService.getUser()?.cognitoId)
       .pipe(take(1))
       .subscribe((apiResponse) => {
-        this.products = apiResponse.data;
+        this.orders = apiResponse.data;
+        console.log(this.orders);
+
+        /*Total de ordenes*/ /*
+        this.orders.forEach((element: Product) => {
+          this.TotalOrden += product.price;
+        });*/
+
       });
   }
+
 }

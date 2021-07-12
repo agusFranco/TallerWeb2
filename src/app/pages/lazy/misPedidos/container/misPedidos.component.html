@@ -3,13 +3,13 @@
 <div class="container mt-5 ">
   <h1 class="titulo" >Mis compras</h1>
 
-  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" *ngFor="let order of orders">
     <ngb-panel title="Simple">
       <ng-template ngbPanelHeader let-opened="opened">
         <!-- <div class="d-flex justify-content-between"> -->
         <div class="contentHeading d-flex  justify-content-between flex-wrap">
-          <h4 class="m-1"><span class="font-weight-bold">PEDIDO N°</span> 1552</h4>
-          <h4 class="m-1"><span class="font-weight-bold">PEDIDO REALIZADO EL 7 DE JUNIO</span></h4>
+          <h4 class="m-1"><span class="font-weight-bold">PEDIDO N°</span> {{ order.orderId  }}</h4>
+          <h4 class="m-1"><span class="font-weight-bold">PEDIDO REALIZADO EL {{ order.date | date: 'dd/MM/YYYY' }}</span></h4>
           <h4 class="m-1"><span class="font-weight-bold">TOTAL:</span> $200</h4>
         <!-- </div> -->
           <!-- <div class="d-flex justify-content-end"> -->
@@ -19,19 +19,19 @@
 
       </ng-template>
       <ng-template ngbPanelContent>
-        <div >
+        <div *ngFor="let product of order.products">
         <div class="row  d-flex  justify-content-between flex-row mb-2">
           <div  class="col-md-2 d-flex justify-content-center contenedor-img-product">
             <img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg">
           </div>
           <div class="col-md-3 d-flex flex-column align-content-between justify-content-center ">
-            <h3 class="font-weight-bold title-product">Producto X</h3>
-            <p class="text-product">Producto muy lindo</p>
+            <h3 class="font-weight-bold title-product">{{ product.name }}</h3>
+            <p class="text-product">{{ product.description }}</p>
           </div>
 
           <div class="col-md-3 align-self-center">
             <h3 class="font-weight-bold text-product">PRECIO</h3>
-            <p  class="text-product">$20</p>
+            <p  class="text-product">${{ product.price }}</p>
           </div>
           <div class="col-md-4 align-self-center d-flex justify-content-center btn-contenedor">
             <button class="btn btn-custom btn-md " type="button">Comprar de nuevo</button>
