@@ -11,4 +11,7 @@ export const APIEndpoints = {
     Get: 'Order',
     Create: 'Order'
   },
+  Orders: {
+    Get: 'Order',
+  },
 };

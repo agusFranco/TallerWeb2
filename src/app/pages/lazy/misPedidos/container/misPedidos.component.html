@@ -1,38 +1,89 @@
 <page-header text="Mis Pedidos" icon="view_list"></page-header>
 
-<div class="container mt-5 mb-5">
+<div class="container mt-5 ">
+  <h1 class="titulo" >Mis compras</h1>
+
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel title="Simple">
+      <ng-template ngbPanelHeader let-opened="opened">
+        <!-- <div class="d-flex justify-content-between"> -->
+        <div class="contentHeading d-flex  justify-content-between flex-wrap">
+          <h4 class="m-1"><span class="font-weight-bold">PEDIDO N°</span> 1552</h4>
+          <h4 class="m-1"><span class="font-weight-bold">PEDIDO REALIZADO EL 7 DE JUNIO</span></h4>
+          <h4 class="m-1"><span class="font-weight-bold">TOTAL:</span> $200</h4>
+        <!-- </div> -->
+          <!-- <div class="d-flex justify-content-end"> -->
+            <button ngbPanelToggle class="btn p-0 btn-link verDetalle justify-content-end">VER DETALLE&nbsp; &nbsp;<i class="fas fa-angle-down"></i></button>
+          <!-- </div> -->
+        </div>
+
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div >
+        <div class="row  d-flex  justify-content-between flex-row mb-2">
+          <div  class="col-md-2 d-flex justify-content-center contenedor-img-product">
+            <img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg">
+          </div>
+          <div class="col-md-3 d-flex flex-column align-content-between justify-content-center ">
+            <h3 class="font-weight-bold title-product">Producto X</h3>
+            <p class="text-product">Producto muy lindo</p>
+          </div>
+
+          <div class="col-md-3 align-self-center">
+            <h3 class="font-weight-bold text-product">PRECIO</h3>
+            <p  class="text-product">$20</p>
+          </div>
+          <div class="col-md-4 align-self-center d-flex justify-content-center btn-contenedor">
+            <button class="btn btn-custom btn-md " type="button">Comprar de nuevo</button>
+          </div>
+          
+        </div>
+      </div>
+
+      </ng-template>
+    </ngb-panel>
+
+  </ngb-accordion>
+
+</div>
+
+<!-- Este código de abajo borralo cuando se muestren bien los productos de arriba -->
+
+
+<!-- <div class="container mt-5 mb-5">
 
     <div class="d-flex justify-content-center row">
-  
-      <h1 class="col-md-10 titulo" >Mis compras</h1>
-  
-        <div class="col-md-10" *ngFor="let product of products">
+
+
+        <div class="col-md-10" *ngFor="let order of orders">
             <div class="row p-2 bg-white border rounded mt-2">
                 <div class="col-md-3 mt-1 container-img"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg"></div>
                 <div class="col-md-4 contenedor-desc">
-                    <p class="entregado">Entregado el 23 de junio </p>
-                   
-                    <p class="text-justify text-truncate para  prodTitulo">{{ product.name }}</p>
-                    <h4 class="mr-1">${{ product.price }} x unidad</h4>
-                    <h4 class="mr-1">Fecha {{ product.date | date: 'dd/MM/YYYY' }}</h4>
+                    <p class="entregado">Entregado el {{ order.date }} </p>
+
+                    <p class="text-justify text-truncate para prodTitulo">Codigo de orden: {{ order._id }}</p>
+                    <h4 class="mr-1">Nombre: {{ order.products.id }} </h4>
                     <h3 class="mr-1 "> <b>Unidades: </b>1</h3>
                     <h4 class="mr-1"> <b>Total: </b>$10</h4>
-                    
+
                 </div>
-  
+
                 <div class=" col-md-5 contenedor-botones ">
-                  <!-- <div class="d-flex flex-row align-items-center">
+                  <div class="d-flex flex-row align-items-center">
                         <h4 class="mr-1">${{ product.price }}</h4>
-                    </div> -->
-  
+                    </div>
+
                     <div class="contenedor-buton mb-2">
-                      <button class="btn btn-primary btn-sm button-detail button-margin" type="button">Ver Detalle</button>
+                      <button class="btn btn-primary btn-sm button-detail button-margin" type="button" (click)="handleDetallePedidoClick()">Ver Detalle</button>
                       <button class="btn btn-custom btn-sm button-detail" type="button">Comprar de nuevo</button>
                     </div>
                 </div>
-  
+
             </div>
         </div>
-  
+
     </div>
-  </div>
+  </div> -->
+
+
+

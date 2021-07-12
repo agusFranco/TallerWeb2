@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  AfterViewInit, ViewChildren } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { OrderService } from 'src/app/core/services/order.service';
 
+
+
 @Component({
-  templateUrl: 'misPedidos.component.html',
-  styleUrls: ['./misPedidos.component.scss'],
+   selector: 'app-root',
+    templateUrl: 'misPedidos.component.html',
+    styleUrls: ['./misPedidos.component.scss'],
+    
 })
 export class misPedidosComponent implements OnInit {
   public products: any[] = [];

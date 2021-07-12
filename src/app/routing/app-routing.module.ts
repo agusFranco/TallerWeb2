@@ -37,6 +37,13 @@ const routes: Routes = [
             (m) => m.misPedidosModule
           ),
       },
+      {
+        path: PagePaths.DetallePedido,
+        loadChildren: () =>
+          import('src/app/pages/lazy/detallePedido/detallePedido.module').then(
+            (m) => m.detallePedidoModule
+          ),
+      },
     ],
   },
   // WILDCARD PARA IR SIEMPRE A HOME

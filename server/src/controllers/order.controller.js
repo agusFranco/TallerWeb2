@@ -8,6 +8,7 @@ const OrderModel = require("../models/mongo/orderModel");
 
 const router = express.Router();
 
+<<<<<<< HEAD
 router.get("/", async function (req, res) {
 
     let orders = await OrderModel.find();
@@ -17,6 +18,15 @@ router.get("/", async function (req, res) {
     }
 
     return ResponseHelper.createSuccessResponse(res, orders);
+=======
+router.get("/"/*,cognitoMiddleware*/, async function (req, res) {
+
+    let ordenes = OrderModel.find()
+    .then(function(ordenes){
+        
+    return ResponseHelper.createSuccessResponse(res, ordenes, "Obtener ordenes");
+    })
+>>>>>>> misPedidos
 });
 
 
