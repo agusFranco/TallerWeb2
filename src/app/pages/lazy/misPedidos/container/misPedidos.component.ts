@@ -1,5 +1,6 @@
 import { Component, OnInit,  AfterViewInit, ViewChildren } from '@angular/core';
 import { take } from 'rxjs/operators';
+import { Order } from 'src/app/common/models/order';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { OrderService } from 'src/app/core/services/order.service';
 
@@ -11,6 +12,7 @@ import { OrderService } from 'src/app/core/services/order.service';
 })
 export class misPedidosComponent implements OnInit {
   public orders: any[] = [];
+  public TotalOrden:number =0;
 
   constructor(
     protected orderService: OrderService,
@@ -25,12 +27,16 @@ export class misPedidosComponent implements OnInit {
         this.orders = apiResponse.data;
         console.log(this.orders);
 
-        /*Total de ordenes*/ /*
-        this.orders.forEach((element: Product) => {
-          this.TotalOrden += product.price;
-        });*/
-
       });
+  }
+
+  /* Se calcula el total */
+  public calculateTotalPrice(products:any){
+    let totalPrice = 0;
+            products.map((product:any) => {
+              totalPrice = totalPrice + product.price;
+            });
+            return totalPrice;
   }
 
 }
