@@ -127,3 +127,12 @@ flex-direction: row;
     margin-left: 10% !important;
 }
 
+::ng-deep .card {
+    margin-bottom: 20px;
+
+  }
+  ::ng-deep .card .card-header {
+  background-color: #d5e7f0;
+  }
+  
+ 
