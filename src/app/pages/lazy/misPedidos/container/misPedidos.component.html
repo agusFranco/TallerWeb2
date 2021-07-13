@@ -10,7 +10,7 @@
         <div class="contentHeading d-flex  justify-content-between flex-wrap">
           <h4 class="m-1"><span class="font-weight-bold">PEDIDO N°</span> {{ order.orderId  }}</h4>
           <h4 class="m-1"><span class="font-weight-bold">PEDIDO REALIZADO EL {{ order.date | date: 'dd/MM/YYYY' }}</span></h4>
-          <h4 class="m-1"><span class="font-weight-bold">TOTAL:</span> $200</h4>
+          <h4 class="m-1"><span class="font-weight-bold">TOTAL:</span> ${{ calculateTotalPrice(order.products) }}</h4>
         <!-- </div> -->
           <!-- <div class="d-flex justify-content-end"> -->
             <button ngbPanelToggle class="btn p-0 btn-link verDetalle justify-content-end">VER DETALLE&nbsp; &nbsp;<i class="fas fa-angle-down"></i></button>
