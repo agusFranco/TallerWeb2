@@ -83,6 +83,7 @@ class Cognito {
       });
     });
   };
+
   verify = (userName, code) => {
     return new Promise((resolve, reject) => {
       let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
@@ -97,6 +98,41 @@ class Cognito {
         }
 
         resolve(result);
+      });
+    });
+  };
+
+  initForgotPassword = (userName) => {
+    return new Promise((resolve, reject) => {
+      let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: userName,
+        Pool: this.userPool,
+      });
+
+      cognitoUser.forgotPassword({
+        onSuccess: function (code) {
+          resolve(code);
+        },
+        onFailure: function (err) {
+          reject(err.message);
+        }
+      });
+    });
+  };
+  confirmForgotPassword = (userName, code, password) => {
+    return new Promise((resolve, reject) => {
+      let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: userName,
+        Pool: this.userPool,
+      });
+
+      cognitoUser.confirmPassword(code, password, {
+        onSuccess: function () {
+          resolve();
+        },
+        onFailure: function (err) {
+          reject(err.message);
+        }
       });
     });
   };

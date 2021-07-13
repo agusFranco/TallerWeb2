@@ -3,12 +3,14 @@ export const APIEndpoints = {
     Register: 'User',
     Login: 'User/Login',
     Verify: 'User/Verify',
+    ForgotPassword: 'User/ForgotPassword',
+    ForgotPasswordConfirm: 'User/ForgotPassword/Confirm',
   },
   Products: {
     Get: 'Product',
   },
   Order: {
     Get: 'Order',
-    Create: 'Order'
+    Create: 'Order',
   },
 };

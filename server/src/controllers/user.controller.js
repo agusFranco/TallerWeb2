@@ -7,6 +7,8 @@ const ResponseHelper = require("../helpers/responseHelper");
 const loginValidator = require("../models/validators/loginValidator");
 const registerValidator = require("../models/validators/registerValidator");
 const verifyValidator = require("../models/validators/verifyValidator");
+const forgotPasswordValidator = require("../models/validators/forgotPasswordValidator");
+const forgotPasswordConfirmValidator = require("../models/validators/forgotPasswordConfirmValidator");
 
 // Cognito
 const Cognito = require("../configuration/cognito");
@@ -96,6 +98,50 @@ router.post("/Verify", async function (req, res) {
     .verify(req.body.email, req.body.code)
     .then(async (cognitoResult) => {
       return ResponseHelper.createSuccessResponse(res, null, "Usuario confirmado existosamente.");
+    })
+    .catch((errorMessage) => {
+      return ResponseHelper.createBadRequestResponse(res, errorMessage);
+    });
+});
+
+router.post("/ForgotPassword", async function (req, res) {
+  const { error } = forgotPasswordValidator.validate(req.body);
+
+  if (error) {
+    return ResponseHelper.createBadRequestResponse(
+      res,
+      error.details[0].message
+    );
+  }
+
+  let cognito = new Cognito();
+
+  cognito
+    .initForgotPassword(req.body.email)
+    .then(async (code) => {
+      return ResponseHelper.createSuccessResponse(res, null, "Verifique su casilla de email y ingrese el codigo.");
+    })
+    .catch((errorMessage) => {
+      return ResponseHelper.createBadRequestResponse(res, errorMessage);
+    });
+});
+
+router.post("/ForgotPassword/Confirm", async function (req, res) {
+  const { error } = forgotPasswordConfirmValidator.validate(req.body);
+
+  if (error) {
+    return ResponseHelper.createBadRequestResponse(
+      res,
+      error.details[0].message
+    );
+  }
+
+  let cognito = new Cognito();
+
+  cognito
+    .confirmForgotPassword(req.body.email, req.body.code, req.body.password)
+    .then(async (code) => {
+      return ResponseHelper.createSuccessResponse(res, null, "Password cambiado satisfactoriamente.");
     })
     .catch((errorMessage) => {
       return ResponseHelper.createBadRequestResponse(res, errorMessage);
