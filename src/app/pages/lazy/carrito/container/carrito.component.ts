@@ -81,7 +81,7 @@ export class CarritoComponent implements OnInit {
   }
 
   public MockGuardarProductosEnCarritoSession():void {
-    this.carritoService.MockGuardarProductosEnCarritoSession();
+    this.carritoService.MockGuardarProductosEnCarrito();
     this.products = this.carritoService.obtenerCarrito();
     this.calcularPrecioTotalCarrito();
   }

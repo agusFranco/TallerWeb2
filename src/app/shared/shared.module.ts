@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { LoaderComponent } from './component/loader/loader.component';
 import { PageHeaderComponent } from './component/page-header/pageheader.component';
+
 import { ExampleDirective } from './directives/example-directive';
 import { PageContainerDirective } from './directives/page-container';
 
