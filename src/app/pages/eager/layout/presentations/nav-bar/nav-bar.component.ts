@@ -11,10 +11,11 @@ export class NavBarComponent implements OnInit {
   @Output() onLoginClick: EventEmitter<any> = new EventEmitter();
   @Output() onMenuItemClick: EventEmitter<any> = new EventEmitter();
   @Output() onLogoutClick: EventEmitter<any> = new EventEmitter();
+  @Output() onCartClick: EventEmitter<any> = new EventEmitter();
 
   constructor(private authService: AuthService) {}
 
-  get user(): User | null{
+  get user(): User | null {
     return this.authService.getUser();
   }
 
@@ -22,6 +23,10 @@ export class NavBarComponent implements OnInit {
 
   public handleSideNavClick(): void {
     this.onSideNavClick.emit();
+  }
+
+  public handleCartClick(): void {
+    this.onCartClick.emit();
   }
 
   public handleLoginClick(): void {
