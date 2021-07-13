@@ -96,3 +96,51 @@ flex-direction: row;
     color: white;
 }
 
+.titulo-orden {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.contenedor-img-detalle {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+::ng-deep .card {
+    margin-bottom: 20px;
+
+  }
+ 
+  .card-header {
+background-color: #d5e7f0;
+  }
+
+  .font-weight-medium {
+      font-weight: 600;
+  }
+
+  @media (max-width: 992px) {
+
+    .contenedor-img-detalle {
+        max-height: 90px !important;
+    }
+    
+   }
+   @media (max-width: 768px) {
+
+    .contenedor-productos {
+       justify-content: center !important;
+    }
+    .contenedor-precio h3, .contenedor-precio p {
+        margin-left: 0px !important;
+    }
+    .textos {
+        text-align: center;
+    }
+    .contenedor-img-detalle {
+        margin-bottom: 10px;
+    }
+    .total-price {
+        justify-content: center !important;
+    }
+   }

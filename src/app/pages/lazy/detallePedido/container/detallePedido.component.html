@@ -1,37 +1,61 @@
-<page-header text="Mis Pedidos" icon="view_list"></page-header>
+<page-header text="Detalle pedido" icon="view_list"></page-header>
 
-<div class="container mt-5 mb-5">
 
-    <div class="d-flex justify-content-center row">
-  
-      <h1 class="col-md-10 titulo" >DETALLE DEL PEDIDO</h1>
-  
-        <div class="col-md-10" *ngFor="let product of products">
-            <div class="row p-2 bg-white border rounded mt-2">
-                <div class="col-md-3 mt-1 container-img"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg"></div>
-                <div class="col-md-4 contenedor-desc">
-                    <p class="entregado">Entregado el {{ product.name }} </p>
-                   
-                    <p class="text-justify text-truncate para prodTitulo">Codigo de orden: {{ product.name }}</p>
-                    <h4 class="mr-1">Nombre: {{ product.name }} </h4>
-                    <h3 class="mr-1 "> <b>Unidades: </b>1</h3>
-                    <h4 class="mr-1"> <b>Total: </b>$10</h4>
-                    
-                </div>
-  
-                <div class=" col-md-5 contenedor-botones ">
-                  <!-- <div class="d-flex flex-row align-items-center">
-                        <h4 class="mr-1">${{ product.price }}</h4>
-                    </div> -->
-  
-                    <div class="contenedor-buton mb-2">
-                      <button class="btn btn-primary btn-sm button-detail button-margin" type="button">Ver Detalle</button>
-                      <button class="btn btn-custom btn-sm button-detail" type="button">Comprar de nuevo</button>
-                    </div>
-                </div>
-  
-            </div>
+<div class=" container mt-5 ">
+  <h1 class="titulo" >Pedido realizado con éxito</h1>
+  <div class="d-flex ">
+<div class="row">
+
+  <div class="col-md-7">
+    <div class="card ">
+      <h2 class="card-header font-weight-medium">Detalle del pedido Nro° 00225</h2>
+      <div class="card-body pb-0">
+          <!-- En el div de abajo iría la iteracion de los productos de la orden -->
+        <div *ngFor="let product of products ; let lastItem = last;" class="producto-individual mb-3" >
+        <div class="row contenedor-productos">
+          <div  class="col-md-3 d-flex justify-content-center contenedor-img-detalle">
+            <img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg">
+          </div>
+          <div class="col-md-7 d-flex flex-column align-content-between textos">
+            <h3 class="font-weight-bold title-product">{{ product.name }}</h3>
+            <p class="text-product">Insertar Categoria!</p>
+          </div>
+          <div class="col-md-2 d-flex flex-column  justify-content-start contenedor-precio textos">
+            <h3 class="font-weight-bold title-product  ml-auto  ">Precio</h3>
+            <p class="text-product ml-auto">$100</p>
+          
         </div>
-  
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="row mt-3">
+        <div class="col-md-5 d-flex flex-column textos">
+          <h3 class="font-weight-bold title-product">TOTAL</h3>
+        </div>
+        <div class="col-md-7 d-flex  justify-content-end textos total-price">
+          <h3 class="font-weight-bold title-product">$100</h3>
+        </div>
+      </div>
+      </div>
     </div>
   </div>
+  
+ 
+<div class="col-md-5">
+  <div class="card pb-3">
+    <h2 class="card-header font-weight-medium">Datos de facturación</h2>
+    <div class="card-body pb-0">
+      <h3 class="font-weight-bold title-product">Pedido entregado a Nicolas Magliano</h3>
+        <h3 class="title-product"><span class="font-weight-bold">Fecha del pedido:</span> 11/07/2021</h3>
+     
+        <h3 class="title-product"><span class="font-weight-bold ">Dirección:</span> Marcon 754, Villa Luzuriaga. Buenos Aires. Argentina</h3>
+        <h3 class="title-product"><span class="font-weight-bold ">Mail de contacto:</span> nmagliano@hotmail.com</h3>
+     
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+
