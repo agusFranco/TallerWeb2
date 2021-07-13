@@ -46,6 +46,7 @@ const products = [
     description: "Descripcion Prod 6",
     price: 10,
     category: { id: 1, description: "Categoria 3" },
+
   },
 ];
 

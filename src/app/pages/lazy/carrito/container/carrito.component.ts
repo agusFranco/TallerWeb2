@@ -75,12 +75,13 @@ export class CarritoComponent implements OnInit {
       let productoRestablecer =
         this.productosEliminadosDelCarrito.pop() as Product;
       this.products.push(productoRestablecer);
+      this.carritoService.agregarProductoAlCarrito(productoRestablecer);
       this.calcularPrecioTotalCarrito();
     }
   }
 
   public MockGuardarProductosEnCarritoSession():void {
-    this.carritoService.MockGuardarProductosEnCarritoSession();
+    this.carritoService.MockGuardarProductosEnCarrito();
     this.products = this.carritoService.obtenerCarrito();
     this.calcularPrecioTotalCarrito();
   }
