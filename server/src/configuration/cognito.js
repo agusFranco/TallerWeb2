@@ -46,9 +46,8 @@ class Cognito {
         cognitoParameters,
         null,
         (error, result) => {
-          if (error) {
-            console.log(error);
-            reject(error);
+          if (error) {        
+            reject(error.message);
             return;
           }
 

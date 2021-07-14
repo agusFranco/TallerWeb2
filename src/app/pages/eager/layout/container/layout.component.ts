@@ -46,6 +46,7 @@ export class LayoutComponent implements OnInit {
 
   public handleLogoutClick(): void {
     this.authService.clearSession();
+    this.navigationService.navigate(PagePaths.Home);
   }
 
   public handleCartClick(): void {
