@@ -1,6 +1,6 @@
 <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
   <div fxLayout="row">
-    <h2>Taller Web 2</h2>
+    <h2 class="clickable" (click)="handleMenuItemClick('home')">Taller Web 2</h2>
   </div>
   <div fxLayout="row" fxHide fxShow.gt-sm>
     <button mat-button (click)="handleMenuItemClick('home')">Home</button>
@@ -14,7 +14,6 @@
   <div fxLayout="row" fxHide fxShow.gt-sm>
     <button mat-button (click)="handleCartClick()">
       <mat-icon>shopping_cart</mat-icon>
-      
     </button>
     <button
       *ngIf="!user"
