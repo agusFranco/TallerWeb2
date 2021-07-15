@@ -9,15 +9,15 @@
   <div class="col-md-7">
     <div class="card ">
       <h2 class="card-header font-weight-medium">Detalle del pedido Nro° 00225</h2>
-      <div class="card-body pb-0">
+      <div class="card-body pb-0" *ngIf="order">
           <!-- En el div de abajo iría la iteracion de los productos de la orden -->
-        <div *ngFor="let product of products ; let lastItem = last;" class="producto-individual mb-3" >
+        <div  *ngFor="let product of order.products; let lastItem = last;" class="producto-individual mb-3" >
         <div class="row contenedor-productos">
           <div  class="col-md-3 d-flex justify-content-center contenedor-img-detalle">
             <img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg">
           </div>
           <div class="col-md-7 d-flex flex-column align-content-between textos">
-            <h3 class="font-weight-bold title-product">{{ product.name }}</h3>
+            <h3 class="font-weight-bold title-product">{{product.name}}</h3>
             <p class="text-product">Insertar Categoria!</p>
           </div>
           <div class="col-md-2 d-flex flex-column  justify-content-start contenedor-precio textos">
@@ -33,7 +33,7 @@
           <h3 class="font-weight-bold title-product">TOTAL</h3>
         </div>
         <div class="col-md-7 d-flex  justify-content-end textos total-price">
-          <h3 class="font-weight-bold title-product">$100</h3>
+          <h3 class="font-weight-bold title-product">${{ calculateTotalPrice(order.products) }}</h3>
         </div>
       </div>
       </div>
@@ -45,11 +45,11 @@
   <div class="card pb-3">
     <h2 class="card-header font-weight-medium">Datos de facturación</h2>
     <div class="card-body pb-0">
-      <h3 class="font-weight-bold title-product">Pedido entregado a Nicolas Magliano</h3>
-        <h3 class="title-product"><span class="font-weight-bold">Fecha del pedido:</span> 11/07/2021</h3>
+      <h3><span class="font-weight-bold">Pedido entregado a</span> {{order.user.firstName}} {{order.user.lastName}}</h3>
+        <h3 class="title-product"><span class="font-weight-bold">Fecha del pedido:</span> {{ order.date | date: 'dd/MM/YYYY' }}</h3>
      
-        <h3 class="title-product"><span class="font-weight-bold ">Dirección:</span> Marcon 754, Villa Luzuriaga. Buenos Aires. Argentina</h3>
-        <h3 class="title-product"><span class="font-weight-bold ">Mail de contacto:</span> nmagliano@hotmail.com</h3>
+        <h3 class="title-product"><span class="font-weight-bold ">Dirección:</span> {{order.user.address.street}} {{order.user.address.number}}, {{order.user.address.city}}. {{order.user.address.province}}</h3>
+        <h3 class="title-product"><span class="font-weight-bold ">Mail de contacto:</span> {{order.user.email}}</h3>
      
     </div>
   </div>

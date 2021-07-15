@@ -19,6 +19,14 @@ router.get("/", async function (req, res) {
     return ResponseHelper.createSuccessResponse(res, orders);
 });
 
+router.get("/ByOrderId/:id", async function (req, res) {
+    let order = await OrderModel.findOne({ "orderId": req.params.id});
+    if (!order || order == null) {
+        return ResponseHelper.createNotFoundResponse(res, 'No se encontraron ordenes del usuario.');
+    }
+
+    return ResponseHelper.createSuccessResponse(res, order);
+});
 
 router.get("/ByUserId/:id", async function (req, res) {
     let orders = [];

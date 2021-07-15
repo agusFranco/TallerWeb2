@@ -8,7 +8,7 @@ import { detallePedidoComponent } from './container/detallePedido.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: detallePedidoComponent,
   },
 ];

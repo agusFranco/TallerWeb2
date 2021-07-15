@@ -9,7 +9,8 @@ export const APIEndpoints = {
   },
   Order: {
     Get: 'Order',
-    Create: 'Order'
+    Create: 'Order',
+    GetByOrderId: 'Order/ByOrderId'
   },
   Orders: {
     Get: 'Order',

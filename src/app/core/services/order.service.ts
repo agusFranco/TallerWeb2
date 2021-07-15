@@ -13,9 +13,15 @@ export class OrderService extends BaseService {
     super(http);
   }
 
-  public getByOrderId(inputModel: any): any {
-    return this.executeGet<Order>(`${APIEndpoints.Order.Get}`);
+  public getByOrderId(id: any): Observable<APIResponse<Order>> {
+    return this.executeGet<Order>(`${APIEndpoints.Order.GetByOrderId}/${id}`);
   }
+
+  // public getByOrdersId(orderId: any): Observable<APIResponse<Order[]>> {
+  //   return this.executeGet<Order[]>(
+  //     `${APIEndpoints.Order.Get}?orderId=${orderId}`
+  //     );
+  // }
 
   public getByUserId(userId: any): Observable<APIResponse<Order[]>> {
     return this.executeGet<Order[]>(

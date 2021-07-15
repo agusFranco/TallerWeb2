@@ -12,8 +12,12 @@ export class NavigationService {
     this.subscribeToRouterEvents();
   }
 
-  public navigate(pagePath: PagePaths): Promise<boolean> {
+  public navigate(pagePath: PagePaths ): Promise<boolean> {
     return this.router.navigate([pagePath]);
+  }
+
+  public navigateWithId(pagePath: PagePaths, id: any): Promise<boolean> {
+    return this.router.navigate([pagePath, id]);
   }
 
   private subscribeToRouterEvents() {
