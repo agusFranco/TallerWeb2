@@ -4,6 +4,9 @@ const router = express.Router();
 const ProductModel = require("../models/mongo/productModel");
 const ResponseHelper = require("../helpers/responseHelper");
 
+const productModel = require("../models/mongo/productModel");
+
+/*
 const products = [
   {
     id: 1,
@@ -49,6 +52,7 @@ const products = [
 
   },
 ];
+*/
 
 router.get("/", async function (req, res) {
 
