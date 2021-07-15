@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { count, take } from 'rxjs/operators';
 import { Order } from 'src/app/common/models/order';
 import { Product } from 'src/app/common/models/product';
 import { User } from 'src/app/common/models/user';
@@ -87,6 +87,7 @@ export class CarritoComponent implements OnInit {
       name: 'Producto 6',
       description: 'Descripcion Prod 6',
       price: 100,
+      imageUrl:"",
       category: { id: 1, description: 'Categoria 1' },
     };
 
@@ -99,5 +100,15 @@ export class CarritoComponent implements OnInit {
     this.carritoService.vaciarCarrito();
     this.products.length = 0;
     this.calcularPrecioTotalCarrito();
+  }
+
+  public contarProductos():number{
+    let products;
+    let counter=0;
+    products=this.carritoService.obtenerCarrito();
+    products.forEach(product => {
+      counter++;
+    });
+    return counter;
   }
 }

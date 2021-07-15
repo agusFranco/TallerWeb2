@@ -12,6 +12,8 @@ import { UserService } from './user.service';
 })
 export class CarritoService {
 
+  contador:number=this.contarProductos();
+
   constructor(private http: HttpClient, private userService: UserService){
     let carrito = localStorage.getItem("Carrito");
     if(carrito != null && carrito.length > 0){
@@ -25,6 +27,7 @@ export class CarritoService {
       name: "Producto 1",
       description: "Descripcion Prod 1",
       price: 10,
+      imageUrl:"",
       category: { id: 1, description: "Categoria 1" }
     },
     {
@@ -32,6 +35,7 @@ export class CarritoService {
       name: "Producto 2",
       description: "Descripcion Prod 2",
       price: 30,
+      imageUrl:"",
       category: { id: 1, description: "Categoria 1" }
     },
     {
@@ -39,6 +43,7 @@ export class CarritoService {
       name: "Producto 3",
       description: "Descripcion Prod 3",
       price: 40,
+      imageUrl:"",
       category: { id: 2, description: "Categoria 2" }
     },
     {
@@ -46,6 +51,7 @@ export class CarritoService {
       name: "Producto 4",
       description: "Descripcion Prod 4",
       price: 60,
+      imageUrl:"",
       category: { id: 3, description: "Categoria 3" }
     },
     {
@@ -53,6 +59,7 @@ export class CarritoService {
       name: "Producto 5",
       description: "Descripcion Prod 5",
       price: 80,
+      imageUrl:"",
       category: { id: 1, description: "Categoria 1" }
     }
   ];
@@ -86,6 +93,16 @@ export class CarritoService {
     let carrito = this.obtenerCarrito();
     carrito.length = 0;
     localStorage.setItem("Carrito", JSON.stringify(carrito));
+  }
+
+  public contarProductos():number{
+    let products;
+    let counter=0;
+    products=this.obtenerCarrito();
+    products.forEach(product => {
+      counter++;
+    });
+    return counter;
   }
 
 }

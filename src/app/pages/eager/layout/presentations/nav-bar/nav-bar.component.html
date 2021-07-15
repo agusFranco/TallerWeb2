@@ -8,7 +8,7 @@
       Productos
     </button>
     <button mat-button *ngIf="user" (click)="handleMenuItemClick('carrito')">
-      Carrito
+      Carrito <span *ngIf="contador" matBadge="{{contador}}" matBadgeOverlap="false"></span>
     </button>
     <button mat-button *ngIf="user" (click)="handleMenuItemClick('misPedidos')">
       Mis Pedidos

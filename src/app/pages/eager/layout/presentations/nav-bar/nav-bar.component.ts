@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output,Input } from '@angular/core';
 import { User } from 'src/app/common/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { CarritoService } from 'src/app/core/services/carrito.service';
 
 @Component({
   selector: 'nav-bar',
@@ -12,7 +13,13 @@ export class NavBarComponent implements OnInit {
   @Output() onMenuItemClick: EventEmitter<any> = new EventEmitter();
   @Output() onLogoutClick: EventEmitter<any> = new EventEmitter();
 
-  constructor(private authService: AuthService) {}
+  @Input() contador: number = 0;
+  
+
+  constructor(private authService: AuthService, public carritoService: CarritoService) {
+
+    this.contador = carritoService.contarProductos();
+  }
 
   get user(): User | null{
     return this.authService.getUser();

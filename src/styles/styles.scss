@@ -141,3 +141,22 @@ body {
   background: green;
   color: white;
 }
+
+.img-thumbnails{
+  width: 80% !important;
+}
+
+.gallery{
+  display: grid !important;
+  gap: 1rem !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)) !important;
+}
+
+.title-small{
+  font-size: 16px !important;
+}
+
+.price{
+  font-size: 20px !important;
+  color: $primary !important;
+}
