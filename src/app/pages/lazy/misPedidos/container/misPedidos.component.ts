@@ -1,4 +1,4 @@
-import { Component, OnInit,  AfterViewInit, ViewChildren } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { PagePaths } from 'src/app/common/enums/pagepaths';
 import { Order } from 'src/app/common/models/order';
@@ -7,19 +7,18 @@ import { NavigationService } from 'src/app/core/services/navigation.service';
 import { OrderService } from 'src/app/core/services/order.service';
 
 @Component({
-   selector: 'app-root',
-    templateUrl: 'misPedidos.component.html',
-    styleUrls: ['./misPedidos.component.scss'],
-    
+  selector: 'app-root',
+  templateUrl: 'misPedidos.component.html',
+  styleUrls: ['./misPedidos.component.scss'],
 })
 export class misPedidosComponent implements OnInit {
   public orders: any[] = [];
-  public TotalOrden:number =0;
+  public TotalOrden: number = 0;
 
   constructor(
     protected orderService: OrderService,
     protected authService: AuthService,
-    protected navigationService: NavigationService,
+    protected navigationService: NavigationService
   ) {}
 
   ngOnInit(): void {
@@ -29,20 +28,26 @@ export class misPedidosComponent implements OnInit {
       .subscribe((apiResponse) => {
         this.orders = apiResponse.data;
         console.log(this.orders);
-
       });
   }
 
   /* Se calcula el total */
-  public calculateTotalPrice(products:any){
+  public calculateTotalPrice(products: any) {
     let totalPrice = 0;
-            products.map((product:any) => {
-              totalPrice = totalPrice + product.price;
-            });
-            return totalPrice;
+
+    products.map((product: any) => {
+      if (product && product.price) {
+        totalPrice = totalPrice + product.price;
+      }
+    });
+
+    return totalPrice;
   }
 
   public goToDetail(order: Order): void {
-    this.navigationService.navigateWithId(PagePaths.DetallePedido, order.orderId);
+    this.navigationService.navigateWithId(
+      PagePaths.DetallePedido,
+      order.orderId
+    );
   }
 }

@@ -1,20 +1,29 @@
 <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
   <div fxLayout="row">
-    <h2 class="clickable" (click)="handleMenuItemClick('home')">Taller Web 2</h2>
+    <h2 class="clickable" (click)="handleMenuItemClick('home')">
+      Taller Web 2
+    </h2>
   </div>
   <div fxLayout="row" fxHide fxShow.gt-sm>
     <button mat-button (click)="handleMenuItemClick('home')">Home</button>
     <button mat-button (click)="handleMenuItemClick('productos')">
       Productos
     </button>
+
     <button mat-button *ngIf="user" (click)="handleMenuItemClick('misPedidos')">
       Mis Pedidos
     </button>
   </div>
   <div fxLayout="row" fxHide fxShow.gt-sm>
-    <button mat-button (click)="handleCartClick()">
+    <a mat-button (click)="handleCartClick()">
       <mat-icon>shopping_cart</mat-icon>
-    </button>
+      <span
+        *ngIf="getContador() > 0"
+        [matBadge]="getContador()"
+        matBadgeOverlap="false"
+      ></span>
+    </a>
+
     <button
       *ngIf="!user"
       mat-raised-button
@@ -23,7 +32,6 @@
     >
       Ingresar
     </button>
-
     <a *ngIf="user" mat-button
       ><mat-icon>account_circle</mat-icon> Bienvenido {{ user?.firstName }} !</a
     >

@@ -12,6 +12,8 @@ import { UserService } from './user.service';
 })
 export class CarritoService {
 
+  contador:number=this.contarProductos();
+
   constructor(private http: HttpClient, private userService: UserService){
     let carrito = localStorage.getItem("Carrito");
     if(carrito != null && carrito.length > 0){
@@ -91,6 +93,16 @@ export class CarritoService {
     let carrito = this.obtenerCarrito();
     carrito.length = 0;
     localStorage.setItem("Carrito", JSON.stringify(carrito));
+  }
+
+  public contarProductos():number{
+    let products;
+    let counter=0;
+    products=this.obtenerCarrito();
+    products.forEach(product => {
+      counter++;
+    });
+    return counter;
   }
 
 }

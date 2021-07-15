@@ -17,6 +17,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatBadgeModule} from '@angular/material/badge';
 
 const Material = [
   CommonModule,
@@ -35,8 +36,9 @@ const Material = [
   MatTabsModule,
   MatSnackBarModule,
   MatDividerModule, 
-    MatListModule,
-    MatGridListModule
+  MatListModule,
+  MatGridListModule,
+  MatBadgeModule
 ];
 
 @NgModule({
