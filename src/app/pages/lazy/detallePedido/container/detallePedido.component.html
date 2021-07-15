@@ -8,7 +8,7 @@
 
   <div class="col-md-7">
     <div class="card ">
-      <h2 class="card-header font-weight-medium">Detalle del pedido Nro° 00225</h2>
+      <h2 class="card-header font-weight-medium">Detalle del pedido Nro° {{ order.orderId | slice:-6  }}</h2>
       <div class="card-body pb-0" *ngIf="order">
           <!-- En el div de abajo iría la iteracion de los productos de la orden -->
         <div  *ngFor="let product of order.products; let lastItem = last;" class="producto-individual mb-3" >
