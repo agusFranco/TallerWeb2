@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { count, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
+import { PagePaths } from 'src/app/common/enums/pagepaths';
 import { Order } from 'src/app/common/models/order';
 import { Product } from 'src/app/common/models/product';
 import { User } from 'src/app/common/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CarritoService } from 'src/app/core/services/carrito.service';
+import { NavigationService } from 'src/app/core/services/navigation.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { OrderService } from 'src/app/core/services/order.service';
 
@@ -14,7 +16,6 @@ import { OrderService } from 'src/app/core/services/order.service';
   styleUrls: ['./carrito.component.scss'],
 })
 export class CarritoComponent implements OnInit {
-
   public products: Product[] = [] as Product[];
   public precioTotalCarrito: number = 0;
   public user!: User | null;
@@ -26,7 +27,8 @@ export class CarritoComponent implements OnInit {
     private carritoService: CarritoService,
     protected authService: AuthService,
     protected orderService: OrderService,
-    protected notificationService: NotificationService
+    protected notificationService: NotificationService,
+    protected navigationService: NavigationService
   ) {}
 
   ngOnInit(): void {
@@ -35,21 +37,21 @@ export class CarritoComponent implements OnInit {
     this.calcularPrecioTotalCarrito();
   }
 
-  public calcularPrecioTotalCarrito():void {
+  public calcularPrecioTotalCarrito(): void {
     this.precioTotalCarrito = 0;
     this.products.forEach((product: Product) => {
       this.precioTotalCarrito += product.price;
     });
   }
 
-  public eliminarProductoDelCarrito(producto: Product):void {
+  public eliminarProductoDelCarrito(producto: Product): void {
     this.carritoService.eliminarProductoDelCarrito(producto.id);
     this.productosEliminadosDelCarrito.push(producto);
     this.products = this.carritoService.obtenerCarrito();
     this.calcularPrecioTotalCarrito();
   }
 
-  public confirmarCompra():void {
+  public confirmarCompra(): void {
     let inputModel: any = {};
     inputModel.cognitoId = this.authService.getUser()?.cognitoId;
     inputModel.products = this.products;
@@ -58,19 +60,24 @@ export class CarritoComponent implements OnInit {
     this.orderService
       .create(inputModel)
       .pipe(take(1))
-      .subscribe((outputModel: any) => {
+      .subscribe((outputModel) => {
         if (outputModel.hasError) {
           this.notificationService.showError(outputModel.message.text);
           return;
         }
-        this.notificationService.showSuccess(outputModel.message.text);
-      });
-      this.notificationService.showSuccess("Compra realizada exitosamente");
-      this.vaciarCarrito();
 
+        this.notificationService.showSuccess(outputModel.message.text);
+
+        this.navigationService.navigateWithId(
+          PagePaths.DetallePedido,
+          outputModel.data.orderId
+        );
+
+        this.vaciarCarrito();
+      });
   }
 
-  public agregarUltimoProductoEliminado():void {
+  public agregarUltimoProductoEliminado(): void {
     if (this.productosEliminadosDelCarrito.length != 0) {
       let productoRestablecer =
         this.productosEliminadosDelCarrito.pop() as Product;
@@ -80,19 +87,19 @@ export class CarritoComponent implements OnInit {
     }
   }
 
-  public MockGuardarProductosEnCarritoSession():void {
+  public MockGuardarProductosEnCarritoSession(): void {
     this.carritoService.MockGuardarProductosEnCarrito();
     this.products = this.carritoService.obtenerCarrito();
     this.calcularPrecioTotalCarrito();
   }
 
-  public agregarProductoAlCarritoMock():void {
+  public agregarProductoAlCarritoMock(): void {
     let product: Product = {
       id: 6,
       name: 'Producto 6',
       description: 'Descripcion Prod 6',
       price: 100,
-      imageUrl:"",
+      imageUrl: '',
       category: 'Categoria 1',
     };
 
@@ -101,17 +108,17 @@ export class CarritoComponent implements OnInit {
     this.calcularPrecioTotalCarrito();
   }
 
-  public vaciarCarrito():void{
+  public vaciarCarrito(): void {
     this.carritoService.vaciarCarrito();
     this.products.length = 0;
     this.calcularPrecioTotalCarrito();
   }
 
-  public contarProductos():number{
+  public contarProductos(): number {
     let products;
-    let counter=0;
-    products=this.carritoService.obtenerCarrito();
-    products.forEach(product => {
+    let counter = 0;
+    products = this.carritoService.obtenerCarrito();
+    products.forEach((product) => {
       counter++;
     });
     return counter;

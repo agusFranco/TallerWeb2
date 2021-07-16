@@ -20,7 +20,7 @@ router.get("/", async function (req, res) {
 });
 
 router.get("/ByOrderId/:id", async function (req, res) {
-    let order = await OrderModel.findOne({ "orderId": req.params.id});
+    let order = await OrderModel.findOne({ "orderId": req.params.id });
     if (!order || order == null) {
         return ResponseHelper.createNotFoundResponse(res, 'No se encontraron ordenes del usuario.');
     }
@@ -31,7 +31,7 @@ router.get("/ByOrderId/:id", async function (req, res) {
 router.get("/ByUserId/:id", async function (req, res) {
     let orders = [];
 
-    orders = await OrderModel.find({ "user.cognitoId": req.params.id});
+    orders = await OrderModel.find({ "user.cognitoId": req.params.id });
 
     console.log(req.params.id);
     if (!orders || orders.length == 0) {
@@ -64,7 +64,7 @@ router.post("/", async function (req, res) {
     const mongoOrder = new OrderModel(orderToSave);
     const savedOrder = await mongoOrder.save();
 
-    return ResponseHelper.createSuccessResponse(res, savedOrder);
+    return ResponseHelper.createSuccessResponse(res, savedOrder, 'Compra realizada exitosamente.');
 });
 
 module.exports = router;

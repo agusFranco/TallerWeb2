@@ -29,7 +29,7 @@ export class OrderService extends BaseService {
     );
   }
 
-  public create(inputModel: any): any {
+  public create(inputModel: any): Observable<APIResponse<Order>> {
     return this.executePost<Order>(APIEndpoints.Order.Create, inputModel);
   }
 }
