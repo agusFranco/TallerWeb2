@@ -27,6 +27,7 @@ export class misPedidosComponent implements OnInit {
       .pipe(take(1))
       .subscribe((apiResponse) => {
         this.orders = apiResponse.data;
+        this.orders.sort(this.orderOrder);
         console.log(this.orders);
       });
   }
@@ -42,6 +43,16 @@ export class misPedidosComponent implements OnInit {
     });
 
     return totalPrice;
+  }
+
+  public orderOrder(a:any , b:any){
+    if(a.date > b.date){
+      return -1;
+    }
+    if(a.date < b.date){
+      return 1;
+    }
+    return 0;
   }
 
   public goToDetail(order: Order): void {
