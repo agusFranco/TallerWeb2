@@ -13,11 +13,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatListModule} from '@angular/material/list';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const Material = [
   CommonModule,
@@ -35,10 +36,11 @@ const Material = [
   MatDialogModule,
   MatTabsModule,
   MatSnackBarModule,
-  MatDividerModule, 
+  MatDividerModule,
   MatListModule,
   MatGridListModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatTooltipModule,
 ];
 
 @NgModule({

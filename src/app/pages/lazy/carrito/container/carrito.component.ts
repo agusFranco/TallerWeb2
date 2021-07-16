@@ -93,7 +93,7 @@ export class CarritoComponent implements OnInit {
       description: 'Descripcion Prod 6',
       price: 100,
       imageUrl:"",
-      category: { id: 1, description: 'Categoria 1' },
+      category: 'Categoria 1',
     };
 
     this.carritoService.agregarProductoAlCarrito(product);

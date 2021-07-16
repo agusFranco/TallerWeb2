@@ -22,46 +22,46 @@ export class CarritoService {
   }
 
   private productosEnCarrito: Product[] = [
-    {
-      id: 1,
-      name: "Producto 1",
-      description: "Con estas zapatillas ADIDAS en tus pies podrás correr en el parque y luego tomar un café con amigos con total comodidadSu exterior de malla ofrece transpirabilidad que mantiene tus pies frescos de la mañana a la noche",
-      price: 10,
-      category: { id: 1, description: "Categoria 1" },
-      imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/z/a/zapatillas-running-adidas-runfalcon-2-0-gris-2820026-100010gz8078001-1.jpg"
-    },
-    {
-      id: 2,
-      name: "Producto 2",
-      description: "Descripcion Prod 2",
-      price: 30,
-      category: { id: 1, description: "Categoria 1" },
-      imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/c/a/campera-con-capucha-puma-evostripe-gris-640020585812003-1.jpg"
-    },
-    {
-      id: 3,
-      name: "Producto 3",
-      description: "Descripcion Prod 3",
-      price: 40,
-      category: { id: 2, description: "Categoria 2" },
-      imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/s/h/short-adidas-running-tokyo-run-negro-100020gd5029001-1.jpg"
-    },
-    {
-      id: 4,
-      name: "Producto 4",
-      description: "Descripcion Prod 4",
-      price: 60,
-      category: { id: 3, description: "Categoria 3" },
-      imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/p/e/pelota-de-futbol-adidas-starlancer-club-blanca-100040gk3499001-1.jpg"
-    },
-    {
-      id: 5,
-      name: "Producto 5",
-      description: "Descripcion Prod 5",
-      price: 80,
-      category: { id: 1, description: "Categoria 1" },
-      imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/z/a/zapatillas-running-nike-air-zoom-structure-23-azul-510010cz6720402-1.jpg"
-    }
+    // {
+    //   id: 1,
+    //   name: "Producto 1",
+    //   description: "Con estas zapatillas ADIDAS en tus pies podrás correr en el parque y luego tomar un café con amigos con total comodidadSu exterior de malla ofrece transpirabilidad que mantiene tus pies frescos de la mañana a la noche",
+    //   price: 10,
+    //   category: "Categoria 1",
+    //   imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/z/a/zapatillas-running-adidas-runfalcon-2-0-gris-2820026-100010gz8078001-1.jpg"
+    // },
+    // {
+    //   id: 2,
+    //   name: "Producto 2",
+    //   description: "Descripcion Prod 2",
+    //   price: 30,
+    //   category: { id: 1, description: "Categoria 1" },
+    //   imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/c/a/campera-con-capucha-puma-evostripe-gris-640020585812003-1.jpg"
+    // },
+    // {
+    //   id: 3,
+    //   name: "Producto 3",
+    //   description: "Descripcion Prod 3",
+    //   price: 40,
+    //   category: { id: 2, description: "Categoria 2" },
+    //   imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/s/h/short-adidas-running-tokyo-run-negro-100020gd5029001-1.jpg"
+    // },
+    // {
+    //   id: 4,
+    //   name: "Producto 4",
+    //   description: "Descripcion Prod 4",
+    //   price: 60,
+    //   category: { id: 3, description: "Categoria 3" },
+    //   imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/p/e/pelota-de-futbol-adidas-starlancer-club-blanca-100040gk3499001-1.jpg"
+    // },
+    // {
+    //   id: 5,
+    //   name: "Producto 5",
+    //   description: "Descripcion Prod 5",
+    //   price: 80,
+    //   category: { id: 1, description: "Categoria 1" },
+    //   imageUrl: "https://solodeportes-9bvc3m9qgmf6g9x.stackpathdns.com/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/z/a/zapatillas-running-nike-air-zoom-structure-23-azul-510010cz6720402-1.jpg"
+    // }
   ];
   
   public obtenerCarrito(): Product[]{

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
-    id:{
+    id: {
         type: Number
     },
     name: {
@@ -14,6 +14,9 @@ const productSchema = mongoose.Schema({
         type: Number
     },
     imageUrl: {
+        type: String
+    },
+    category: {
         type: String
     }
 });

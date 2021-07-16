@@ -2,33 +2,54 @@
 <div class="mt-3">
   <div class="row">
     <div class="col-lg-1 col-md-2 col-sm-1">
-        <mat-card>
-          <button mat-button [matMenuTriggerFor]="menu">Categorías</button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>Calzado</button>
-            <button mat-menu-item>Indumentaria</button>
-            <button mat-menu-item>Accesorios</button>
-          </mat-menu>
-        </mat-card>
+      <mat-card>
+        <button mat-button [matMenuTriggerFor]="menu">
+          {{ currentCategory || "Categorias" }}
+        </button>
+        <mat-menu #menu="matMenu">
+          <button
+            *ngFor="let category of categories"
+            mat-menu-item
+            (click)="handleCategoryClick(category)"
+          >
+            {{ category }}
+          </button>
+          <button
+            *ngIf="currentCategory"
+            mat-menu-item
+            (click)="handleClearCategory()"
+          >
+            Limpiar filtro
+          </button>
+        </mat-menu>
+      </mat-card>
     </div>
     <div class="col-lg-11 col-md-10 col-sm-1">
       <div class="gallery">
-          <mat-card *ngFor="let product of products">
-            <div fxLayoutAlign="center">
-              <img mat-card-image [src]="product.imageUrl " alt="Image" >
-            </div>        
-            <mat-card-header>
-              <mat-card-title class="title-small">{{ product.name }}</mat-card-title>
-              <mat-card-subtitle class="price"> {{ product.price | currency: 'USD'}}</mat-card-subtitle>
-            </mat-card-header> 
-            <!-- <a routerLink="/products/{{product.id}}"></a>        -->
-            <mat-card-actions fxLayoutAlign="center">
-              <button (click)="agregarProductoAlCarrito(product)" mat-flat-button color="primary">Agregar al Carrito</button>
-            </mat-card-actions>
-          </mat-card>    
-      </div>       
+        <mat-card *ngFor="let product of filteredProducts">
+          <div fxLayoutAlign="center">
+            <img mat-card-image [src]="product.imageUrl" alt="Image" />
+          </div>
+          <mat-card-header>
+            <mat-card-title class="title-small">{{
+              product.name
+            }}</mat-card-title>
+            <mat-card-subtitle class="price">
+              {{ product.price | currency: "USD" }}</mat-card-subtitle
+            >
+          </mat-card-header>
+          <!-- <a routerLink="/products/{{product.id}}"></a>        -->
+          <mat-card-actions fxLayoutAlign="center">
+            <button
+              (click)="agregarProductoAlCarrito(product)"
+              mat-flat-button
+              color="primary"
+            >
+              Agregar al Carrito
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
+  </div>
 </div>
-</div>
-
-
