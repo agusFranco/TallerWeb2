@@ -16,7 +16,7 @@
         <tr *ngFor="let product of products">
           <td>
             <img
-              src="{{ product.imageUrl }}"
+              [src]="product.imageUrl"
               class="img-producto border border-primary"
             />
             {{ product.name }}
@@ -27,12 +27,12 @@
               [matTooltip]="product.description"
               matTooltipPosition="below"
               matTooltipHideDelay="0"
-              matTooltipClass="tooltip-red"
+              matTooltipClass="tooltip-black"
               >info</mat-icon
             >
           </td>
           <td>{{ product.category }}</td>
-          <td>$ {{ product.price }} ARS</td>
+          <td>{{ product.price | currency }} ARS</td>
           <td>
             <button
               (click)="eliminarProductoDelCarrito(product)"
@@ -42,6 +42,10 @@
               class="
                 mat-focus-indicator mat-icon-button mat-button-base mat-warn
               "
+              matTooltip="Eliminar producto del carrito"
+              matTooltipPosition="below"
+              matTooltipHideDelay="0"
+              matTooltipClass="tooltip-red"
             >
               <span class="mat-button-wrapper"
                 ><mat-icon
@@ -74,7 +78,7 @@
           <td></td>
           <td></td>
           <td>PRECIO TOTAL</td>
-          <td>$ {{ precioTotalCarrito }} ARS</td>
+          <td>{{ precioTotalCarrito | currency }} ARS</td>
           <td></td>
         </tr>
       </tbody>
@@ -239,23 +243,6 @@
   class="btn-restaurar-productos"
 >
   Restaurar Último Producto Eliminado<mat-icon>cached icon</mat-icon>
-</button>
-
-<button
-  (click)="MockGuardarProductosEnCarritoSession()"
-  mat-raised-button
-  color=""
-  class=""
->
-  RESTABLECER CARRITO PRUEBA - MOCK PROVISORIO<mat-icon>cached icon</mat-icon>
-</button>
-<button
-  (click)="agregarProductoAlCarritoMock()"
-  mat-raised-button
-  color=""
-  class="m-lg-1"
->
-  AGREGAR UN PRODUCTO - MOCK PROVISORIO
 </button>
 
 <button

@@ -87,27 +87,6 @@ export class CarritoComponent implements OnInit {
     }
   }
 
-  public MockGuardarProductosEnCarritoSession(): void {
-    this.carritoService.MockGuardarProductosEnCarrito();
-    this.products = this.carritoService.obtenerCarrito();
-    this.calcularPrecioTotalCarrito();
-  }
-
-  public agregarProductoAlCarritoMock(): void {
-    let product: Product = {
-      id: 6,
-      name: 'Producto 6',
-      description: 'Descripcion Prod 6',
-      price: 100,
-      imageUrl: '',
-      category: 'Categoria 1',
-    };
-
-    this.carritoService.agregarProductoAlCarrito(product);
-    this.products = this.carritoService.obtenerCarrito();
-    this.calcularPrecioTotalCarrito();
-  }
-
   public vaciarCarrito(): void {
     this.carritoService.vaciarCarrito();
     this.products.length = 0;

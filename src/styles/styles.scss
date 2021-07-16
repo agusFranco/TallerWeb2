@@ -166,6 +166,11 @@ body {
   color: $primary !important;
 }
 
-.tooltip-red {
-  background: #b71c1c;
+.tooltip-black {
+  background: black;
+  font-size: 12px;
+}
+.tooltip-red{
+  background: red;
+  opacity: 0.75;
 }
