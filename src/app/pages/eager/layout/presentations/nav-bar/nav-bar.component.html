@@ -15,15 +15,18 @@
     </button>
   </div>
   <div fxLayout="row" fxHide fxShow.gt-sm>
-    <a mat-button (click)="handleCartClick()">
+    <button
+      mat-button
+      [matBadge]="getContador()"
+      matBadgePosition="after"
+      matBadgeColor="primary"
+      [matBadgeHidden]="getContador() ==  0"
+      (click)="handleCartClick()"
+      class="mr-3"
+    >
       <mat-icon>shopping_cart</mat-icon>
-      <span
-        *ngIf="getContador() > 0"
-        [matBadge]="getContador()"
-        matBadgeOverlap="false"
-      ></span>
-    </a>
-
+     Mi Carrito
+    </button>
     <button
       *ngIf="!user"
       mat-raised-button
