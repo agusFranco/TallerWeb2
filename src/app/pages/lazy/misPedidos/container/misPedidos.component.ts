@@ -7,7 +7,6 @@ import { NavigationService } from 'src/app/core/services/navigation.service';
 import { OrderService } from 'src/app/core/services/order.service';
 
 @Component({
-  selector: 'app-root',
   templateUrl: 'misPedidos.component.html',
   styleUrls: ['./misPedidos.component.scss'],
 })

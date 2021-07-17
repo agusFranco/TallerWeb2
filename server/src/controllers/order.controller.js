@@ -33,7 +33,6 @@ router.get("/ByUserId/:id", async function (req, res) {
 
     orders = await OrderModel.find({ "user.cognitoId": req.params.id });
 
-    console.log(req.params.id);
     if (!orders || orders.length == 0) {
         return ResponseHelper.createNotFoundResponse(res, 'No se encontraron ordenes del usuario.');
     }
