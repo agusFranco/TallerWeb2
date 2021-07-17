@@ -12,7 +12,8 @@ export const APIEndpoints = {
   Order: {
     Get: 'Order',
     Create: 'Order',
-    GetByOrderId: 'Order/ByOrderId'
+    GetByOrderId: 'Order/ByOrderId',
+    GetByUserId: 'Order/ByUserId'
   },
   Orders: {
     Get: 'Order',

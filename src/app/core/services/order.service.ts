@@ -25,7 +25,7 @@ export class OrderService extends BaseService {
 
   public getByUserId(userId: any): Observable<APIResponse<Order[]>> {
     return this.executeGet<Order[]>(
-      `${APIEndpoints.Order.Get}?userId=${userId}`
+      `${APIEndpoints.Order.GetByUserId}/${userId}`
     );
   }
 

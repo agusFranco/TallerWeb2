@@ -4,6 +4,10 @@
   <h1 class="titulo">Mis Pedidos</h1>
   <loader *ngIf="loading"></loader>
 
+  <div *ngIf="!loading && !orders">
+    <h3>Usted no tiene pedidos realizados.</h3>
+  </div>
+
   <ngb-accordion
     #acc="ngbAccordion"
     class="orderTable"
