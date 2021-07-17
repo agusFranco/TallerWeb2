@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 // Controllers
 app.use("/user", userController);
 app.use("/product", productsController);
-app.use("/order", orderController);
+app.use("/order", cognitoMiddleware, orderController);
 app.use("/authorized", cognitoMiddleware, authorizedController);
 
 app.listen(process.env.PORT || 8000, () => {

@@ -1,8 +1,10 @@
 <page-header text="Detalle pedido" icon="view_list"></page-header>
 
-<div class="container mt-5" *ngIf="order">
-  <h1 class="titulo">Pedido realizado con éxito</h1>
-  <div class="d-flex">
+<div class="container mt-5">
+  <h1 class="titulo">Pedido realizado con éxito.</h1>
+  <loader *ngIf="loading"></loader>
+
+  <div class="d-flex" *ngIf="order">
     <div class="row">
       <div class="col-md-7">
         <div class="card">

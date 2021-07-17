@@ -3,10 +3,8 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { PagePaths } from 'src/app/common/enums/pagepaths';
 import { Product } from 'src/app/common/models/product';
-import { ProductService } from 'src/app/core/services/products.service';
 import { CarritoService } from 'src/app/core/services/carrito.service';
-import { APIEndpoints } from 'src/app/common/models/api/apiendpoints';
-import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import { ProductService } from 'src/app/core/services/products.service';
 
 @Component({
   templateUrl: 'products.component.html',
@@ -20,6 +18,8 @@ export class ProductsComponent implements OnInit {
 
   public categories: string[] = [];
   public currentCategory!: string | null;
+
+  public loading: boolean = true;
 
   constructor(
     private router: Router,
@@ -48,6 +48,7 @@ export class ProductsComponent implements OnInit {
         });
 
         this.categories = [...new Set(this.categories)];
+        this.loading = false;
       });
   }
 

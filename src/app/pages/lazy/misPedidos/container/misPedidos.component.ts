@@ -14,6 +14,7 @@ import { OrderService } from 'src/app/core/services/order.service';
 export class misPedidosComponent implements OnInit {
   public orders: any[] = [];
   public TotalOrden: number = 0;
+  public loading: boolean = true;
 
   constructor(
     protected orderService: OrderService,
@@ -26,6 +27,7 @@ export class misPedidosComponent implements OnInit {
       .getByUserId(this.authService.getUser()?.cognitoId)
       .pipe(take(1))
       .subscribe((apiResponse) => {
+        this.loading = false;
         this.orders = apiResponse.data;
         this.orders.sort(this.orderOrder);
         console.log(this.orders);
@@ -45,11 +47,11 @@ export class misPedidosComponent implements OnInit {
     return totalPrice;
   }
 
-  public orderOrder(a:any , b:any){
-    if(a.date > b.date){
+  public orderOrder(a: any, b: any) {
+    if (a.date > b.date) {
       return -1;
     }
-    if(a.date < b.date){
+    if (a.date < b.date) {
       return 1;
     }
     return 0;
