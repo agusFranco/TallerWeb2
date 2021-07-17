@@ -1,8 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { PagePaths } from 'src/app/common/enums/pagepaths';
 import { Order } from 'src/app/common/models/order';
+import { Product } from 'src/app/common/models/product';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { CarritoService } from 'src/app/core/services/carrito.service';
 import { NavigationService } from 'src/app/core/services/navigation.service';
 import { OrderService } from 'src/app/core/services/order.service';
 
@@ -18,7 +20,8 @@ export class misPedidosComponent implements OnInit {
   constructor(
     protected orderService: OrderService,
     protected authService: AuthService,
-    protected navigationService: NavigationService
+    protected navigationService: NavigationService,
+    protected carritoService: CarritoService
   ) {}
 
   ngOnInit(): void {
@@ -61,5 +64,9 @@ export class misPedidosComponent implements OnInit {
       PagePaths.DetallePedido,
       order.orderId
     );
+  }
+
+  public agregarAlCarrito(product: Product): void {
+    this.carritoService.agregarProductoAlCarrito(product);    
   }
 }

@@ -56,7 +56,6 @@ export class ProductsComponent implements OnInit {
 
   public agregarProductoAlCarrito(product: Product): void {
     this.carritoService.agregarProductoAlCarrito(product);
-    this.notificationService.showSuccess('Producto agregado al carrito.');
   }
 
   public handleCategoryClick(category: string): void {
