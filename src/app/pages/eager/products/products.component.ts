@@ -4,6 +4,7 @@ import { take } from 'rxjs/operators';
 import { PagePaths } from 'src/app/common/enums/pagepaths';
 import { Product } from 'src/app/common/models/product';
 import { CarritoService } from 'src/app/core/services/carrito.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { ProductService } from 'src/app/core/services/products.service';
 
 @Component({
@@ -24,7 +25,8 @@ export class ProductsComponent implements OnInit {
   constructor(
     private router: Router,
     private productService: ProductService,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
+    protected notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -52,14 +54,9 @@ export class ProductsComponent implements OnInit {
       });
   }
 
-  public agregarProductoAlCarrito(product: Product): number {
-    console.log('producto: ' + JSON.stringify(product));
+  public agregarProductoAlCarrito(product: Product): void {
     this.carritoService.agregarProductoAlCarrito(product);
-    let contador = 0;
-    contador = this.carritoService.contarProductos();
-    console.log('contador: ' + contador);
-    this.listarProductos();
-    return contador;
+    this.notificationService.showSuccess('Producto agregado al carrito.');
   }
 
   public handleCategoryClick(category: string): void {
