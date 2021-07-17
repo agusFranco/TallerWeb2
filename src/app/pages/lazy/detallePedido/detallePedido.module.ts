@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { detallePedidoComponent } from './container/detallePedido.component';
 
 const routes: Routes = [
+  { path: '', component: detallePedidoComponent },
   {
     path: ':id',
     component: detallePedidoComponent,
@@ -14,7 +15,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [SharedModule, MaterialModule, HttpClientModule, RouterModule.forChild(routes)],
+  imports: [
+    SharedModule,
+    MaterialModule,
+    HttpClientModule,
+    RouterModule.forChild(routes),
+  ],
   exports: [detallePedidoComponent],
   declarations: [detallePedidoComponent],
   providers: [],

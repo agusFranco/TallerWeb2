@@ -53,7 +53,7 @@ export class HeaderInterceptor implements HttpInterceptor {
     this.navigationService.navigate(PagePaths.Home);
     const unauthorizedError: APIMessage = {
       code: '401',
-      text: 'Something went wrong. Please sign in again.',
+      text: 'No estas autorizado.',
       type: APIMessageType.Error,
     };
     response.error.messages = [unauthorizedError] as any;

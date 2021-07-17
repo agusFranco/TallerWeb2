@@ -118,14 +118,15 @@ class Cognito {
       });
     });
   };
-  confirmForgotPassword = (userName, code, password) => {
+
+  confirmForgotPassword = (userName, code, newPassword) => {
     return new Promise((resolve, reject) => {
       let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
         Username: userName,
         Pool: this.userPool,
       });
 
-      cognitoUser.confirmPassword(code, password, {
+      cognitoUser.confirmPassword(code, newPassword, {
         onSuccess: function () {
           resolve();
         },

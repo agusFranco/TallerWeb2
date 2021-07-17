@@ -5,6 +5,7 @@ import { PagePaths } from '../common/enums/pagepaths';
 import { HomeComponent } from '../pages/eager/home/home.component';
 import { ProductsComponent } from '../pages/eager/products/products.component';
 import { LayoutComponent } from '../pages/eager/layout/container/layout.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: PagePaths.Home, pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
       // LAZY
       {
         path: PagePaths.Carrito,
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('src/app/pages/lazy/carrito/carrito.module').then(
             (m) => m.CarritoModule
@@ -32,6 +34,7 @@ const routes: Routes = [
       },
       {
         path: PagePaths.MisPedidos,
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('src/app/pages/lazy/misPedidos/misPedidos.module').then(
             (m) => m.misPedidosModule
@@ -39,6 +42,7 @@ const routes: Routes = [
       },
       {
         path: PagePaths.DetallePedido,
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('src/app/pages/lazy/detallePedido/detallePedido.module').then(
             (m) => m.detallePedidoModule
